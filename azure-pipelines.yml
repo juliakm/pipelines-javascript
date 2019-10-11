@@ -20,7 +20,7 @@ pool:
 #     npm run build
 #   displayName: 'npm install and build'
 
-
+steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
