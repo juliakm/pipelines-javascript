@@ -3,6 +3,8 @@ jobs:
 - deployment: A
   pool:
     vmImage: 'ubuntu-16.04'
+    environment: 'smarthotel-dev'
+
   strategy:
     runOnce:
       deploy:
@@ -11,11 +13,14 @@ jobs:
           name: setvarStep
         - script: echo $(setvarStep.myOutputVar)
           name: echovar
+
 # Map the variable from the job for the first slice
 - job: B
   dependsOn: A
   pool:
     vmImage: 'ubuntu-16.04'
+    environment: 'smarthotel-dev'
+
   variables:
     myVarFromDeploymentJob: $[ dependencies.A.outputs['A.setvarStep.myOutputVar'] ]
   steps:
