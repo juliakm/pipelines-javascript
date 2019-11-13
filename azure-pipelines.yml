@@ -3,7 +3,7 @@
 # File: azure-pipelines.yml
 
 jobs:
-- template: template-try.yml# Template reference
+- template: template-try.yml # Template reference
   parameters:
     name: Linux
     vmImage: 'ubuntu-16.04'
