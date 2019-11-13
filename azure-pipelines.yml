@@ -2,5 +2,6 @@
 # File: template-try.yml
 
 steps:
+- template: template-try.yml
 - script: echo I did a thing
   condition: and(succeeded(), eq('${{ parameters.doThing }}', 'true'))
