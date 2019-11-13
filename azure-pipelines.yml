@@ -1,6 +1,5 @@
 
-parameters:
-  doThing: false
+# File: template-try.yml
 
 steps:
 - script: echo I did a thing
