@@ -1,24 +1,2 @@
-# # File: azure-pipelines.yml
-
-# File: azure-pipelines.yml
-
-jobs:
-- template: template-try.yml # Template reference
-  parameters:
-    name: Linux
-    vmImage: 'ubuntu-16.04'
-
-- template: template-try.yml  # Template reference
-  parameters:
-    name: macOS
-    vmImage: 'macOS-10.13'
-
-- template: template-try.yml  # Template reference
-  parameters:
-    name: Windows
-    vmImage: 'vs2017-win2016'
-
-# steps:
-# - template: template-try.yml
-# - script: echo I did a thing
-#   condition: and(succeeded(), eq('${{ parameters.doThing }}', 'true'))
+steps:
+ - template: template-try.yml
