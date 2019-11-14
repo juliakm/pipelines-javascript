@@ -1,6 +1,4 @@
 jobs:
-- job: Linux
-  pool:
-    vmImage: 'ubuntu-latest'
-  steps:
-  - template: npm-steps.yml
+- template: npm-steps.yml  # Template reference
+  parameters:
+    name: Linux Testing
