@@ -1,7 +1,8 @@
 trigger:
 - master
 
-pool: 'macOS-latest'
+pool: 
+    vmImage: 'macOS-latest'
 
 steps:
   - script: echo hello from macOS
