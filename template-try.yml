@@ -1,14 +1,6 @@
 parameters:
-  name: ''  # defaults for any parameters that aren't specified
-  vmImage: ''
+  doThing: false
 
-jobs:
-- job: ${{ parameters.name }}
-  pool: 
-    vmImage: ${{ parameters.vmImage }}
-  steps:
-  - script: npm install
-  - script: npm test
-  
-#parameters:
- # doThing: false
+steps:
+- script: echo I did a thing
+  condition: and(succeeded(), eq('${{ parameters.doThing }}', 'true'))
