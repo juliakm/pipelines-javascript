@@ -1,3 +1,11 @@
-steps:
-- script: npm install
-- script: npm test
+parameters:
+  name: 'Linux'  # defaults for any parameters that aren't specified
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: ${{ parameters.name }}
+  pool: 
+    vmImage: ${{ parameters.vmImage }}
+  steps:
+  - script: npm install
+  - script: npm test
