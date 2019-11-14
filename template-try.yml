@@ -3,4 +3,4 @@ parameters:
 
 steps:
 - script: echo I did a thing
-  condition: and(succeeded(), eq('${{ parameters.doThing }}', false))
+  condition: and(succeeded(), eq('${{ parameters.doThing }}', true))
