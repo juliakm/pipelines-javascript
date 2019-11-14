@@ -1,2 +1,6 @@
-steps:
- - template: template-try.yml
+jobs:
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - template: templates/npm-steps.yml  # Template reference
