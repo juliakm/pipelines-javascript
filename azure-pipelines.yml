@@ -4,20 +4,40 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+jobs:
+- job: A
+  steps:
+  - script: exit 1
 
-# - script: |
-#     npm install
-#     npm run build
-#   displayName: 'npm install and build'
+- job: B
+  dependsOn: A
+  condition: failed()
+  steps:
+  - script: echo this will run when A fails
 
-- task: PublishBuildArtifacts@1
-  inputs: 
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'drop'
-    publishLocation: 'pipeline'
+- job: C
+  dependsOn:
+  - A
+  - B
+  condition: succeeded('B')
+  steps:
+  - script: echo this will run when B runs and succeeds
+
+
+# steps:
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '10.x'
+#   displayName: 'Install Node.js'
+
+# # - script: |
+# #     npm install
+# #     npm run build
+# #   displayName: 'npm install and build'
+
+# - task: PublishBuildArtifacts@1
+#   inputs: 
+#     targetPath: '$(Pipeline.Workspace)'
+#     artifact: 'drop'
+#     publishLocation: 'pipeline'
 
