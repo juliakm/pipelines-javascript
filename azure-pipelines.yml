@@ -16,8 +16,9 @@ stages:
 - stage: One
   jobs:
   - job: A
+    dependsOn: B
     steps:
-    - script: exit 1
+    - script: echo hello
 
   - job: B
     dependsOn: A
