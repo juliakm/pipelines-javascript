@@ -20,9 +20,12 @@ steps:
     Contents: '**' ## update to match what you want to copy
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-- task: PublishBuildArtifacts@1
-  inputs: 
-    pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
+- script: echo $(Build.StagingDirectory)
+- powershell: dir
+
+# - task: PublishBuildArtifacts@1
+#   inputs: 
+#     pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
 
 
 
