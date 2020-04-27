@@ -12,7 +12,7 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '10.x'
+    versionSpec: '12.x'
   displayName: 'Install Node.js'
 
 - script: |
@@ -38,13 +38,13 @@ steps:
     targetFolder: $(Build.ArtifactStagingDirectory)/npm
   displayName: 'Copy package.json'
 
-- script: |
-    PackageName=$(npm list --json --depth=0 | sed -n 2p | cut -d '"' -f4)
-    NewPackageVersion=$(npm list --json --depth=0 | sed -n 3p | cut -d '"' -f4)
-    PublishedPackageVersion=$(npm show $PackageName version)
-    echo "##vso[task.setvariable variable=NewPackageVersion;]$NewPackageVersion"
-    echo "##vso[task.setvariable variable=PublishedPackageVersion;]$PublishedPackageVersion"
-  displayName: "Extract package versions"
+# - script: |
+#     PackageName=$(npm list --json --depth=0 | sed -n 2p | cut -d '"' -f4)
+#     NewPackageVersion=$(npm list --json --depth=0 | sed -n 3p | cut -d '"' -f4)
+#     PublishedPackageVersion=$(npm show $PackageName version)
+#     echo "##vso[task.setvariable variable=NewPackageVersion;]$NewPackageVersion"
+#     echo "##vso[task.setvariable variable=PublishedPackageVersion;]$PublishedPackageVersion"
+#   displayName: "Extract package versions"
 
 - task: PublishBuildArtifacts@1
   inputs:
