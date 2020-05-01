@@ -8,7 +8,7 @@ resources:
    - package: npmpackage
      type: NPM
      connection: my-npm-package
-     package: juliakm/tiny
+     name: juliakm/tiny
 
 trigger: none
 
