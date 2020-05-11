@@ -22,7 +22,7 @@ jobs:
   steps:
   - bash: echo $(a) #outputs 102
   - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime)
-  - script: echo $[pipeline.startTime] 
+  - script: echo $[variables.pipeline.startTime] 
 
 
 # steps:
