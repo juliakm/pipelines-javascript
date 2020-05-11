@@ -21,7 +21,8 @@ jobs:
     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
   steps:
   - bash: echo $(a) #outputs 102
-  - bash: echo $(pipeline.startTime) #outputs 100
+  - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime)
+  - script: echo $[pipeline.starttime] 
 
 
 # steps:
