@@ -53,4 +53,4 @@ jobs:
   - bash: echo $(b) #outputs 2020-05-11 16:36:13-05:00
   - script: echo $(c) #outputs echo $(pipeline.startTime)
   - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime)
-  - script: echo $[pipeline.startTime]
+  - script: echo $(system.pipelineStartTime)
