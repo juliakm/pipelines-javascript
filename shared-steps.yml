@@ -1,0 +1,8 @@
+steps:
+
+- script: echo Running build for $(OS_PLAT)
+- task: PowerShell@2
+  inputs:
+    filePath: myscript.ps1
+    pwsh: $[ coalesce(variables.USE_PSCORE, 'false') ]
+
