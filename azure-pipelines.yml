@@ -1,3 +1,27 @@
+trigger: none
+
+strategy:
+  matrix:
+    windows:
+      OS_PLAT: windows
+      IMAGE: windows-latest
+    windows-core:
+      OS_PLAT: windows
+      IMAGE: windows-latest
+      USE_PSCORE: true
+    linux:
+      OS_PLAT: linux
+      IMAGE: ubuntu-latest
+      USE_PSCORE: true
+
+pool:
+  vmImage: $[ variables.IMAGE ]
+
+steps:
+- template: shared-steps.yml
+
+
+
 # Node.js
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
@@ -10,124 +34,22 @@
 #      endpoint: my-npm-connection
 #      name: juliakm/tiny
 
-trigger: none
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-jobs:
-- job:
-  variables:
-    a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
-    b: $[pipeline.startTime]
-    c: $(pipeline.startTime)
-
-  steps:
-  - bash: echo $(a) #outputs 102
-  - bash: echo $(b) #outputs 2020-05-11 16:36:13-05:00
-  - script: echo $(c) #outputs echo $(pipeline.startTime)
-  - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime)
-
-# steps:
-# - task: NodeTool@0 
-#   inputs:
-#     versionSpec: '12.x' # replace this value with the version that you need for your project
-# - script: echo $(pipeline.startTime)
-# - bash: echo $(a)
-# - bash: printenv
-
-# - script: npm install --only=dev
-# - script: npx mocha
-# - script: npm install -g @angular/cli
-
-# - script: |
-#     npm install
-#     npm run build
-#   displayName: 'npm install and build'
-
-# - script: |
-#     npm pack
-#   displayName: 'Package for npm release'
-
-# - task: CopyFiles@2
-#   inputs:
-#     sourceFolder: '$(Build.SourcesDirectory)'
-#     contents: '*.tgz' 
-#     targetFolder: $(Build.ArtifactStagingDirectory)/npm
-#   displayName: 'Copy npm package'
-
-# - task: CopyFiles@2
-#   inputs:
-#     sourceFolder: '$(Build.SourcesDirectory)'
-#     contents: 'package.json' 
-#     targetFolder: $(Build.ArtifactStagingDirectory)/npm
-#   displayName: 'Copy package.json'
-
-# - script: |
-#     PackageName=$(npm list --json --depth=0 | sed -n 2p | cut -d '"' -f4)
-#     NewPackageVersion=$(npm list --json --depth=0 | sed -n 3p | cut -d '"' -f4)
-#     PublishedPackageVersion=$(npm show $PackageName version)
-#     echo "##vso[task.setvariable variable=NewPackageVersion;]$NewPackageVersion"
-#     echo "##vso[task.setvariable variable=PublishedPackageVersion;]$PublishedPackageVersion"
-#   displayName: "Extract package versions"
-
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathtoPublish: '$(Build.ArtifactStagingDirectory)/npm'
-#     artifactName: npm
-#   displayName: 'Publish npm artifact'
-
-
-# trigger:
-# - none
+#START
+# trigger: none
 
 # pool:
 #   vmImage: 'ubuntu-latest'
 
-# steps:
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '10.x'
-#   displayName: 'Install Node.js'
+# jobs:
+# - job:
+#   variables:
+#     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
+#     b: $[pipeline.startTime]
+#     c: $(pipeline.startTime)
 
-# - script: |
-#     npm install
-#     npm run build
-#   displayName: 'npm install and build'
-
-# - task: CopyFiles@2
-#   inputs:
-#     Contents: '**' ## update to match what you want to copy
-#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-# - script: echo $(Build.StagingDirectory)
-# - powershell: dir
-
-# - task: PublishBuildArtifacts@1
-#   inputs: 
-#     pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
-
-
-
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
-# trigger:
-# - master
-
-# pool:
-#   vmImage: 'ubuntu-latest'
-
-# steps:
-# - task: NodeTool@0
-#   inputs:
-#     versionSpec: '10.x'
-#   displayName: 'Install Node.js'
-
-# - script: |
-#     npm install --only=dev
-#     npx mocha
-#     npm run build
-#   displayName: 'npm install and build'
+#   steps:
+#   - bash: echo $(a) #outputs 102
+#   - bash: echo $(b) #outputs 2020-05-11 16:36:13-05:00
+#   - script: echo $(c) #outputs echo $(pipeline.startTime)
+#   - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime)
+#END
