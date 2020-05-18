@@ -1,24 +1,24 @@
-trigger: none
+# trigger: none
 
-strategy:
-  matrix:
-    windows:
-      OS_PLAT: windows
-      IMAGE: windows-latest
-    windows-core:
-      OS_PLAT: windows
-      IMAGE: windows-latest
-      USE_PSCORE: true
-    linux:
-      OS_PLAT: linux
-      IMAGE: ubuntu-latest
-      USE_PSCORE: true
+# strategy:
+#   matrix:
+#     windows:
+#       OS_PLAT: windows
+#       IMAGE: windows-latest
+#     windows-core:
+#       OS_PLAT: windows
+#       IMAGE: windows-latest
+#       USE_PSCORE: true
+#     linux:
+#       OS_PLAT: linux
+#       IMAGE: ubuntu-latest
+#       USE_PSCORE: true
 
-pool:
-  vmImage: $[ variables.IMAGE ]
+# pool:
+#   vmImage: $[ variables.IMAGE ]
 
-steps:
-- template: shared-steps.yml
+# steps:
+# - template: shared-steps.yml
 
 
 
@@ -34,22 +34,22 @@ steps:
 #      endpoint: my-npm-connection
 #      name: juliakm/tiny
 
-#START
-# trigger: none
 
-# pool:
-#   vmImage: 'ubuntu-latest'
+trigger: none
 
-# jobs:
-# - job:
-#   variables:
-#     a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
-#     b: $[pipeline.startTime]
-#     c: $(pipeline.startTime)
+pool:
+  vmImage: 'ubuntu-latest'
 
-#   steps:
-#   - bash: echo $(a) #outputs 102
-#   - bash: echo $(b) #outputs 2020-05-11 16:36:13-05:00
-#   - script: echo $(c) #outputs echo $(pipeline.startTime)
-#   - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime)
-#END
+jobs:
+- job:
+  variables:
+    a: $[counter(format('{0:yyyyMMdd}', pipeline.startTime), 100)]
+    b: $[pipeline.startTime]
+    c: $(pipeline.startTime)
+
+  steps:
+  - bash: echo $(a) #outputs 102
+  - bash: echo $(b) #outputs 2020-05-11 16:36:13-05:00
+  - script: echo $(c) #outputs echo $(pipeline.startTime)
+  - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime)
+  - script: echo $(system.pipelineStartTime) # pipeline start time
