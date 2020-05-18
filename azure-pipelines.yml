@@ -47,13 +47,13 @@ jobs:
     b: $[pipeline.startTime]
     c: $(pipeline.startTime)
     d: $(system.pipelineStartTime)
-    e: $[counter(format('{0:yyyyMMdd}', system.pipelineStartTime), 100)] 
+    #e: $[counter(format('{0:yyyyMMdd}', system.pipelineStartTime), 100)] 
 
   steps:
   - bash: echo $(a) #outputs 102
   - bash: echo $(b) #outputs 2020-05-11 16:36:13-05:00
   - script: echo $(c) #outputs echo $(pipeline.startTime)
   - script: echo $(d) #outputs 2020-05-11 16:36:13-05:00
-  - script: echo $(e) #error!
+  #- script: echo $(e) #error!
   - script: echo $(pipeline.startTime) #outputs echo $(pipeline.startTime) # throws error
   - script: echo $(system.pipelineStartTime) #outputs 2020-05-11 16:36:13-05:00
