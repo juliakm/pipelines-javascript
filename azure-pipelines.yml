@@ -42,25 +42,39 @@ pool:
 
 stages:
 - stage: A
+  condition: false
   jobs:
   - job: A1
     steps:
-     - script: echo "##vso[task.setvariable variable=skipsubsequent;isOutput=true]false"
-       name: printvar
-     - script: echo "##vso[task.setvariable variable=stageexists;isOutput=true]true"
-       name: stagevar
-
+    - script: echo Job A1
 - stage: B
-  condition: and(succeeded(), ne(dependencies.A.A1.outputs['printvar.skipsubsequent'], 'true'))
-  dependsOn: A
+  condition: in(dependencies.A.result, 'Succeeded', 'SucceededWithIssues', 'Skipped'),
   jobs:
   - job: B1
     steps:
-    - script: echo hello from Stage B
-  - job: B2
-    condition: ne(stageDependencies.A.A1.outputs['stagevar.stageexists'], 'true')
-    steps:
-     - script: echo hello from Stage B2
+    - script: echo Job B1
+
+# stages:
+# - stage: A
+#   jobs:
+#   - job: A1
+#     steps:
+#      - script: echo "##vso[task.setvariable variable=skipsubsequent;isOutput=true]false"
+#        name: printvar
+#      - script: echo "##vso[task.setvariable variable=stageexists;isOutput=true]true"
+#        name: stagevar
+
+# - stage: B
+#   condition: and(succeeded(), ne(dependencies.A.A1.outputs['printvar.skipsubsequent'], 'true'))
+#   dependsOn: A
+#   jobs:
+#   - job: B1
+#     steps:
+#     - script: echo hello from Stage B
+#   - job: B2
+#     condition: ne(stageDependencies.A.A1.outputs['stagevar.stageexists'], 'true')
+#     steps:
+#      - script: echo hello from Stage B2
 
 # jobs:
 # - job:
