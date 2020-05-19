@@ -58,7 +58,7 @@ stages:
     steps:
     - script: echo hello from Stage B
   - job: B2
-    condition: neq(stageDependencies.A.A1.outputs['stagevar.stageexists'], 'true')
+    condition: ne(stageDependencies.A.A1.outputs['stagevar.stageexists'], 'true')
     steps:
      - script: echo hello from Stage B2
 
