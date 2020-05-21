@@ -3,7 +3,7 @@ variables:
   a: $[lower('FOO')]
   b: $[upper('bah')]
   c: $[length('fabrikam')]
-  d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server)]
+  d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
 
 trigger: none
 
