@@ -2,7 +2,7 @@
 variables:
   a: $[lower('FOO')]
   b: $[upper('bah')]
-  c: $[length('fabrikam')]
+  c: $[length('fabrikam','donkey')]
 
 trigger: none
 
