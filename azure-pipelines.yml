@@ -2,7 +2,8 @@
 variables:
   a: $[lower('FOO')]
   b: $[upper('bah')]
-  c: $[length('fabrikam','donkey')]
+  c: $[length('fabrikam')]
+  d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server)]
 
 trigger: none
 
@@ -13,6 +14,7 @@ steps:
 - script: echo $(a)
 - script: echo $(b)
 - script: echo $(c)
+- script: echo $(d)
 
 # trigger: none
 
