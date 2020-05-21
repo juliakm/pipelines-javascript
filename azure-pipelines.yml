@@ -43,7 +43,7 @@ pool:
 steps:
 - bash: echo '$[variables.var]'
 - script: echo $[variables.var]
-- bash: echo $[variables.var]
+
 # stages:
 # - stage: A
 #   condition: false
