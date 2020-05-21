@@ -40,19 +40,23 @@ trigger: none
 pool:
   vmImage: 'ubuntu-latest'
 
-stages:
-- stage: A
-  condition: false
-  jobs:
-  - job: A1
-    steps:
-    - script: echo Job A1
-- stage: B
-  condition: in(dependencies.A.result, 'Succeeded', 'SucceededWithIssues', 'Skipped')
-  jobs:
-  - job: B1
-    steps:
-    - script: echo Job B1
+steps:
+- bash: echo '$[variables.var]'
+- script: echo $[variables.var]
+- bash: echo $[variables.var]
+# stages:
+# - stage: A
+#   condition: false
+#   jobs:
+#   - job: A1
+#     steps:
+#     - script: echo Job A1
+# - stage: B
+#   condition: in(dependencies.A.result, 'Succeeded', 'SucceededWithIssues', 'Skipped')
+#   jobs:
+#   - job: B1
+#     steps:
+#     - script: echo Job B1
 
 # stages:
 # - stage: A
