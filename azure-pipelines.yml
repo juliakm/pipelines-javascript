@@ -1,7 +1,7 @@
 
 variables:
-  a: lower('FOO')
-  b: upper('bah')
+  a: $[lower('FOO')]
+  b: $[upper('bah')]
 
 trigger: none
 
