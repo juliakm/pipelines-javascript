@@ -2,6 +2,7 @@
 variables:
   a: $[lower('FOO')]
   b: $[upper('bah')]
+  c: $[length('fabrikam')]
 
 trigger: none
 
@@ -11,6 +12,7 @@ pool:
 steps:
 - script: echo $(a)
 - script: echo $(b)
+- script: echo $(c)
 
 # trigger: none
 
