@@ -41,8 +41,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- bash: echo '$[variables.var]'
-- script: echo $[variables.var]
+- bash: echo '$[variables.var]' #output $[variables.var]
+- script: echo '$[variables.var]' #output $[variables.var]
 
 # stages:
 # - stage: A
