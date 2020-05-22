@@ -1,20 +1,74 @@
-
-variables:
-  a: $[lower('FOO')]
-  b: $[upper('bah')]
-  c: $[length('fabrikam')]
-  d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
-
 trigger: none
 
-pool:
-  vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo $(a)
-- script: echo $(b)
-- script: echo $(c)
-- script: echo $(d)
+stages:
+- stage: A
+  jobs:
+  - job: jA
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+      - script: 'true'
+- stage: B
+  dependsOn: A
+  jobs:
+  - job: jB
+    pool:
+      vmImage: 'ubuntu-18.04'
+    steps:
+     - script: 'fail'
+- stage: COK
+  dependsOn: B
+  jobs:
+  - job: jC
+    pool: 
+      vmImage: 'ubuntu-18.04'
+    steps:
+      - script: 'true'
+- stage: CKO
+  dependsOn: B
+  condition: failed()
+  jobs:
+  - job: jC
+    pool: 
+      vmImage: 'ubuntu-18.04'
+    steps:
+      - script: 'true'
+- stage: D
+  dependsOn: ['COK', 'CKO']
+  condition: or(succeeded('COK'), succeeded('CKO'))
+  jobs:
+  - job: jD
+    pool: 
+      vmImage: 'ubuntu-18.04'
+    steps:
+      - script: 'true'
+- stage: E
+  dependsOn: D
+  jobs:
+  - job: jE
+    pool: 
+      vmImage: 'ubuntu-18.04'
+    steps:
+      - script: 'true'
+
+
+# variables:
+#   a: $[lower('FOO')]
+#   b: $[upper('bah')]
+#   c: $[length('fabrikam')]
+#   d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
+
+# trigger: none
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# steps:
+# - script: echo $(a)
+# - script: echo $(b)
+# - script: echo $(c)
+# - script: echo $(d)
 
 # trigger: none
 
