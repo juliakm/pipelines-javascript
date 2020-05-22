@@ -45,6 +45,7 @@ stages:
       - script: 'true'
 - stage: E
   dependsOn: D
+  condition: success('D')
   jobs:
   - job: jE
     pool: 
