@@ -6,7 +6,7 @@ stages:
   jobs:
   - job: jA
     pool:
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'ubuntu-latest'
     steps:
       - script: 'true'
 - stage: B
@@ -14,7 +14,7 @@ stages:
   jobs:
   - job: jB
     pool:
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'ubuntu-latest'
     steps:
      - script: 'fail'
 - stage: COK
@@ -22,7 +22,7 @@ stages:
   jobs:
   - job: jC
     pool: 
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'ubuntu-latest'
     steps:
       - script: 'true'
 - stage: CKO
@@ -31,7 +31,7 @@ stages:
   jobs:
   - job: jC
     pool: 
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'ubuntu-latest'
     steps:
       - script: 'true'
 - stage: D
@@ -40,7 +40,7 @@ stages:
   jobs:
   - job: jD
     pool: 
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'ubuntu-latest'
     steps:
       - script: 'true'
 - stage: E
@@ -49,7 +49,7 @@ stages:
   jobs:
   - job: jE
     pool: 
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'ubuntu-latest'
     steps:
       - script: 'true'
 
