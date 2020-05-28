@@ -1,57 +1,71 @@
 trigger: none
 
+jobs:
+  # track deployments on the environment
+- deployment: DeployWeb
+  displayName: deploy Web App
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  # creates an environment if it doesn't exist
+  environment: 'smarthotel-dev'
+  strategy:
+    # default deployment strategy, more coming...
+    runOnce:
+      deploy:
+        steps:
+        - script: echo my first deployment
 
-stages:
-- stage: A
-  jobs:
-  - job: jA
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-      - script: 'true'
-- stage: B
-  dependsOn: A
-  jobs:
-  - job: jB
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-     - script: 'fail'
-- stage: COK
-  dependsOn: B
-  jobs:
-  - job: jC
-    pool: 
-      vmImage: 'ubuntu-latest'
-    steps:
-      - script: 'true'
-- stage: CKO
-  dependsOn: B
-  condition: failed()
-  jobs:
-  - job: jC
-    pool: 
-      vmImage: 'ubuntu-latest'
-    steps:
-      - script: 'true'
-- stage: D
-  dependsOn: ['COK', 'CKO']
-  condition: or(succeeded('COK'), succeeded('CKO'))
-  jobs:
-  - job: jD
-    pool: 
-      vmImage: 'ubuntu-latest'
-    steps:
-      - script: 'true'
-- stage: E
-  dependsOn: D
-  condition: succeeded('D')
-  jobs:
-  - job: jE
-    pool: 
-      vmImage: 'ubuntu-latest'
-    steps:
-      - script: 'true'
+# stages:
+# - stage: A
+#   jobs:
+#   - job: jA
+#     pool:
+#       vmImage: 'ubuntu-latest'
+#     steps:
+#       - script: 'true'
+# - stage: B
+#   dependsOn: A
+#   jobs:
+#   - job: jB
+#     pool:
+#       vmImage: 'ubuntu-latest'
+#     steps:
+#      - script: 'fail'
+# - stage: COK
+#   dependsOn: B
+#   jobs:
+#   - job: jC
+#     pool: 
+#       vmImage: 'ubuntu-latest'
+#     steps:
+#       - script: 'true'
+# - stage: CKO
+#   dependsOn: B
+#   condition: failed()
+#   jobs:
+#   - job: jC
+#     pool: 
+#       vmImage: 'ubuntu-latest'
+#     steps:
+#       - script: 'true'
+# - stage: D
+#   dependsOn: ['COK', 'CKO']
+#   condition: or(succeeded('COK'), succeeded('CKO'))
+#   jobs:
+#   - job: jD
+#     pool: 
+#       vmImage: 'ubuntu-latest'
+#     steps:
+#       - script: 'true'
+# - stage: E
+#   dependsOn: D
+#   condition: succeeded('D')
+#   jobs:
+#   - job: jE
+#     pool: 
+#       vmImage: 'ubuntu-latest'
+#     steps:
+#       - script: 'true'
 
 
 # variables:
