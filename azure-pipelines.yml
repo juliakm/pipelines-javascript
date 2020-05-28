@@ -1,6 +1,10 @@
 trigger: none
 
 jobs:
+- job: A
+  steps:
+  - download: current
+    artifact: myApp
   # track deployments on the environment
 - deployment: DeployWeb
   displayName: deploy Web App
