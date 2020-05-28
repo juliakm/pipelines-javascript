@@ -6,6 +6,8 @@ jobs:
   displayName: deploy Web App
   pool:
     vmImage: 'Ubuntu-16.04'
+  workspace:
+   clean: all
   # creates an environment if it doesn't exist
   environment: 'smarthotel-dev'
   strategy:
