@@ -76,7 +76,7 @@
 parameters:
 - name: endpoint
   type: string
-  default: ''
+  default: 'foo'
 - name: rootDirectory
   type: string
   default: $(Pipeline.Workspace)
@@ -85,7 +85,7 @@ parameters:
   default: '/'
 - name: archiveName
   type: string
-  default: ''
+  default: 'bar'
 
 
 # parameters:
