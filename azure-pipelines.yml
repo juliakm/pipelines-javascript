@@ -92,7 +92,10 @@ trigger: none
 
 steps:
 - bash: |
-    echo ${{ join(';', parameters.myObject) }}
+    for each in "${{ join(';', parameters.myObject) }}"
+    do
+      echo "$each"
+    done
 
 # variables:
 #   a: $[lower('FOO')]
