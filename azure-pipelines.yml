@@ -4,7 +4,7 @@ parameters:
   default: "[foo: 'FOO', bar: 'BAR']"
 
 variables:
-  A: $[join('foo','[aleph, bah]')]
+  A: $[join(';','[aleph, bah]')]
   B: $[upper('bah')]
 
 #"['FOO','BAR']"
