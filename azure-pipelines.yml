@@ -88,7 +88,8 @@ steps:
 - script: echo ${{ parameters.items }}
 - ${{ if eq(join(';', parameters.items), 'two') }}:
   - script: echo "Items"
-- script: echo $[join(';', ${{ parameters.items }})]
+- script: echo ${{ join(';', parameters.items) }}
+# echo $[join(';', ${{ parameters.items }})]
 
 
 # variables:
