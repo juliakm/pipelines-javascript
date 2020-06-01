@@ -1,8 +1,11 @@
 parameters:
-  myArray:
-  - foo
-  - bar
+- name: myArray
+  type: string
+  default: "[foo: 'FOO', bar: 'BAR']"
+
+variables:
+  joined: ${{ join(";", parameters.myArray) }}
 
 steps:
   - script: |
-      ${{ join(";", parameters.myArray) }}
+      echo $joined
