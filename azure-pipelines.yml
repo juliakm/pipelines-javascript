@@ -73,13 +73,21 @@
 #     steps:
 #       - script: 'true'
 
+parameters:
+  - name: items
+    type: string
+    default: one
+    values:
+    - one
+    - two
+    - three
 
 variables:
   a: $[lower('FOO')]
   b: $[upper('bah')]
   c: $[length('fabrikam')]
   d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
-  e: $[join('X','aXbXc')]
+  e: $[join(${{ parameters.items }},';')]
 
 trigger: none
 
