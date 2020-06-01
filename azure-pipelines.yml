@@ -5,7 +5,7 @@ parameters:
 
 variables:
   A: $[join('foo','bah')]
-  B: $[uppercase('bah')]
+  B: $[upper('bah')]
 
 #"['FOO','BAR']"
 steps:
