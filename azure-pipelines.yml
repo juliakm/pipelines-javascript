@@ -81,25 +81,36 @@ parameters:
     - one
     - two
     - three
-
-variables:
-  a: $[lower('FOO')]
-  b: $[upper('bah')]
-  c: $[length('fabrikam')]
-  d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
-
-
+  
 trigger: none
 
-pool:
-  vmImage: 'ubuntu-latest'
+steps: 
+- script: echo ${{ parameters.items }}
+- ${{ if eq(join('', parameters.items), '') }}:
+  - script: echo "Items"
 
-steps:
-- script: echo $(a)
-- script: echo $(b)
-- script: echo $(c)
-- script: echo $(d)
-- script: echo join(';', {{ parameters.items}} )
+
+# variables:
+#   a: $[lower('FOO')]
+#   b: $[upper('bah')]
+#   c: $[length('fabrikam')]
+#   d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
+
+
+# trigger: none
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# steps:
+# - script: echo $(a)
+# - script: echo $(b)
+# - script: echo $(c)
+# - script: echo $(d)
+
+  # ${{ if eq(join('', parameters.items), '') }}:
+  
+
 
 # trigger: none
 
