@@ -1,12 +1,14 @@
 parameters:
-- name: myArray
-  type: string
-  default: "'FOO','BAR'"
+- name: myObject
+  type: object
+  default:
+    foo: FOO
+    bar: BAR
 
 variables:
   A: $[join(';','[foo, bar]')]
   B: $[upper('bah')]
-  C: $[join(';', ${{ parameters.myArray }}]
+  C: $[join(';', ${{ parameters.myObject }}]
 
 #"['FOO','BAR']"
 steps:
