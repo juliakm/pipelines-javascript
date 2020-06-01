@@ -92,11 +92,8 @@ trigger: none
 
 steps:
 - bash: |
-    for each in "${{ join(';', parameters.myObject) }}"
-    do
-      echo "$each"
-    done
-
+    $ myarr = ${{ join(';', parameters.myObject) }}
+ 
 # variables:
 #   a: $[lower('FOO')]
 #   b: $[upper('bah')]
