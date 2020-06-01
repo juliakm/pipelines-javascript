@@ -87,7 +87,7 @@ variables:
   b: $[upper('bah')]
   c: $[length('fabrikam')]
   d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
-  e: $[join(${{ parameters.items }},';')]
+  e: $[join("one",';')]
 
 trigger: none
 
