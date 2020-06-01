@@ -1,7 +1,7 @@
 parameters:
 - name: myArray
   type: string
-  default: ["foo: FOO", "bar: BAR"]
+  default: "[foo: 'FOO', bar: 'BAR']"
 
 
 steps:
