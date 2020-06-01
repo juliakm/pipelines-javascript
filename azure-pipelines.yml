@@ -74,6 +74,9 @@
 #       - script: 'true'
 
 parameters:
+- name: requiredParams
+  type: object
+  default: []
 - name: endpoint
   type: string
   default: 'foo'
