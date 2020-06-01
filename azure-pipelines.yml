@@ -4,8 +4,9 @@ parameters:
   default: "[foo: 'FOO', bar: 'BAR']"
 
 variables:
-  joined: $[join("['FOO','BAR']")]
+  joined: $[join()]
 
+#"['FOO','BAR']"
 steps:
   - script: |
       echo $joined
