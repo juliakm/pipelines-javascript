@@ -6,7 +6,7 @@ parameters:
 variables:
   A: $[join(';','[foo, bar]')]
   B: $[upper('bah')]
-  C: $[join(';', {{ parameters.myArray)]
+  C: $[join(';', {{ parameters.myArray }}]
 
 #"['FOO','BAR']"
 steps:
