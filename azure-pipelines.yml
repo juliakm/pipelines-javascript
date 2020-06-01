@@ -92,7 +92,9 @@ trigger: none
 
 steps:
 - script: |
-    $myarr = ${{ join(';', parameters.myObject) }}
+    echo "TESTING"
+  env:
+    $MY_ARR: ${{ join(';', parameters.myObject) }} 
  
 # variables:
 #   a: $[lower('FOO')]
