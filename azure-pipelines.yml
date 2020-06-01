@@ -1,7 +1,7 @@
 parameters:
 - name: myArray
   type: string
-  default: "['FOO','BAR']"
+  default: "('FOO','BAR')"
 
 variables:
   A: $[join(';','[foo, bar]')]
