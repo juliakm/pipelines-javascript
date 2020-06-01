@@ -6,4 +6,4 @@ parameters:
 
 steps:
   - script: |
-      echo ${{ format('myArray:{0}', parameters.myArray) }}
+      echo ${{ join(";", parameters.myArray) }}
