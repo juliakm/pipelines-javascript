@@ -4,7 +4,7 @@ parameters:
   default: "[foo: 'FOO', bar: 'BAR']"
 
 variables:
-  joined: $[join("['FOO','BAR']", "X")]
+  joined: $[join("['FOO','BAR']")]
 
 steps:
   - script: |
