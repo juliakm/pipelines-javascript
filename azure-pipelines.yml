@@ -1,25 +1,25 @@
-trigger: none
+# trigger: none
 
-jobs:
-- job: A
-  steps:
-  - download: current
-    artifact: myApp
-  # track deployments on the environment
-- deployment: DeployWeb
-  displayName: deploy Web App
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  workspace:
-   clean: all
-  # creates an environment if it doesn't exist
-  environment: 'smarthotel-dev'
-  strategy:
-    # default deployment strategy, more coming...
-    runOnce:
-      deploy:
-        steps:
-        - script: echo my first deployment
+# jobs:
+# - job: A
+#   steps:
+#   - download: current
+#     artifact: myApp
+#   # track deployments on the environment
+# - deployment: DeployWeb
+#   displayName: deploy Web App
+#   pool:
+#     vmImage: 'Ubuntu-16.04'
+#   workspace:
+#    clean: all
+#   # creates an environment if it doesn't exist
+#   environment: 'smarthotel-dev'
+#   strategy:
+#     # default deployment strategy, more coming...
+#     runOnce:
+#       deploy:
+#         steps:
+#         - script: echo my first deployment
 
 # stages:
 # - stage: A
@@ -74,22 +74,24 @@ jobs:
 #       - script: 'true'
 
 
-# variables:
-#   a: $[lower('FOO')]
-#   b: $[upper('bah')]
-#   c: $[length('fabrikam')]
-#   d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
+variables:
+  a: $[lower('FOO')]
+  b: $[upper('bah')]
+  c: $[length('fabrikam')]
+  d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
+  e: $[join('https://www.tinfoilsecurity.com/','saml/consume')]
 
-# trigger: none
+trigger: none
 
-# pool:
-#   vmImage: 'ubuntu-latest'
+pool:
+  vmImage: 'ubuntu-latest'
 
-# steps:
-# - script: echo $(a)
-# - script: echo $(b)
-# - script: echo $(c)
-# - script: echo $(d)
+steps:
+- script: echo $(a)
+- script: echo $(b)
+- script: echo $(c)
+- script: echo $(d)
+- script: echo $(e)
 
 # trigger: none
 
