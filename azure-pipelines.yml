@@ -92,7 +92,7 @@ trigger: none
 
 steps:
 - script: |
-    ${{ join(';', parameters.myObject) }}
+    $fullObject = ${{ join(';', parameters.myObject) }}
 
 # variables:
 #   a: $[lower('FOO')]
