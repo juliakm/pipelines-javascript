@@ -74,23 +74,11 @@
 #       - script: 'true'
 
 parameters:
-- name: requiredParams
+- name: myObject
   type: object
-  default: []
-- name: endpoint
-  type: string
-  default: 'foo'
-- name: rootDirectory
-  type: string
-  default: $(Pipeline.Workspace)
-- name: remoteDirectory
-  type: string
-  default: '/'
-- name: archiveName
-  type: string
-  default: 'bar'
-
-
+  default:
+    foo: FOO
+    bar: BAR
 # parameters:
 #   - name: items
 #     type: string
@@ -103,20 +91,8 @@ parameters:
 trigger: none
 
 steps:
-- task: PowerShell@2
-  inputs:
-   script: | 
-    $params = $env:REQUIRED_PARAMS -split ";"
-    foreach($param in $params) {
-        Write-Host $param
-        Write-Host "are you on?"
-    }
-   targetType: inline
-   pwsh: true
-  displayName: Check for required parameters
-  env:
-    REQUIRED_PARAMS: ${{ join(';', parameters.requiredParams) }}
-
+- script: |
+    ${{ join(';', parameters.myObject) }}
 
 # variables:
 #   a: $[lower('FOO')]
