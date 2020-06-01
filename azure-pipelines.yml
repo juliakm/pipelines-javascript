@@ -1,18 +1,12 @@
 parameters:
-- name: endpoint
-  type: string
-  default: ''
-- name: rootDirectory
-  type: string
-  default: $(Pipeline.Workspace)
-- name: remoteDirectory
-  type: string
-  default: '/'
-- name: archiveName
-  type: string
-  default: ''
+- name: myObject
+  type: object
+  default:
+    foo: FOO
+    bar: BAR
+
 
 
 steps:
   - script: |
-      echo ${{ format('endpoint:{0}', parameters.endpoint) }}
+      echo ${{ format('myObject:{0}', parameters.myObject) }}
