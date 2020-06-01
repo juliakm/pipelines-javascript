@@ -109,7 +109,6 @@ steps:
     $params = $env:REQUIRED_PARAMS -split ";"
     foreach($param in $params) {
         Write-Host $param
-      }
     }
    targetType: inline
    pwsh: true
