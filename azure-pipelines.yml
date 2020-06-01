@@ -109,6 +109,7 @@ steps:
     $params = $env:REQUIRED_PARAMS -split ";"
     foreach($param in $params) {
         Write-Host $param
+        Write-Host "are you on?"
     }
    targetType: inline
    pwsh: true
