@@ -1,12 +1,9 @@
 parameters:
-- name: myObject
-  type: object
-  default:
-    foo: FOO
-    bar: BAR
-
+- name: myArray
+  type: string
+  default: ["foo: FOO", "bar: BAR"]
 
 
 steps:
   - script: |
-      echo ${{ format('myObject:{0}', parameters.myObject) }}
+      echo ${{ format('myArray:{0}', parameters.myArray) }}
