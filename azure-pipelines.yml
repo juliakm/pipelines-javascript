@@ -1,14 +1,13 @@
 parameters:
-- name: myObject
-  type: object
-  default:
-    foo: FOO
-    bar: BAR
+  projects:
+  - test1
+  - test2
+
 
 variables:
   A: $[join(';','[foo, bar]')]
   B: $[upper('bah')]
-  C: $[join(';', ${{ parameters.myObject }}]
+  C: $[join(';', ${{ parameters.projects }}]
 
 #"['FOO','BAR']"
 steps:
