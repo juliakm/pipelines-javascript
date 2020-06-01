@@ -93,7 +93,7 @@ trigger: none
 steps:
 - script: |
     echo "TESTING"
-    echo $(MY_ARR)
+  
   env:
     MY_ARR: ${{ join(';', parameters.myObject) }} 
  
