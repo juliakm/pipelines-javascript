@@ -108,9 +108,7 @@ steps:
    script: | 
     $params = $env:REQUIRED_PARAMS -split ";"
     foreach($param in $params) {
-      if ([string]::IsNullOrEmpty($param.Split(":")[1])) {
-        Write-Host "##vso[task.logissue type=error;]Missing template parameter $($param.Split(":")[0])"
-        Write-Host "##vso[task.complete result=Failed;]"
+        Write-Host $param
       }
     }
    targetType: inline
