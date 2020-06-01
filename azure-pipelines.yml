@@ -79,7 +79,7 @@ variables:
   b: $[upper('bah')]
   c: $[length('fabrikam')]
   d: $[replace('https://www.tinfoilsecurity.com/saml/consume','https://www.tinfoilsecurity.com','http://server')]
-  e: $[join('https://www.tinfoilsecurity.com/','saml/consume')]
+  e: $[join('X','aXbXc')]
 
 trigger: none
 
