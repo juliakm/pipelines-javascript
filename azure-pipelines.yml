@@ -1,8 +1,7 @@
 parameters:
-- name: myArray
-  type: string
-  default: "[foo: 'FOO', bar: 'BAR']"
-
+  myArray:
+  - foo
+  - bar
 
 steps:
   - script: |
