@@ -99,7 +99,7 @@ steps:
 - script: echo $(b)
 - script: echo $(c)
 - script: echo $(d)
-- script: echo join(';',parameters.items)
+- script: echo join(';', {{ parameters.items}} )
 
 # trigger: none
 
