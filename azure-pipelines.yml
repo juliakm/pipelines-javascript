@@ -1,11 +1,12 @@
 parameters:
 - name: myArray
   type: string
-  default: "[foo: 'FOO', bar: 'BAR']"
+  default: "['FOO','BAR']"
 
 variables:
-  A: $[join(';',"[aleph, bah]")]
+  A: $[join(';','[foo, bar]')]
   B: $[upper('bah')]
+  C: $[join(';', {{ parameters.myArray)]
 
 #"['FOO','BAR']"
 steps:
