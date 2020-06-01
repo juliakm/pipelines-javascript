@@ -4,9 +4,11 @@ parameters:
   default: "[foo: 'FOO', bar: 'BAR']"
 
 variables:
-  joined: $[join('foo','bah')]
+  A: $[join('foo','bah')]
+  B: $[uppercase('bah')]
 
 #"['FOO','BAR']"
 steps:
   - script: |
-      echo $joined
+      echo $A
+      echo $B
