@@ -74,25 +74,35 @@
 #       - script: 'true'
 
 parameters:
-  - name: items
-    type: string
-    default: two
-    values:
-    - one
-    - two
-    - three
+- name: endpoint
+  type: string
+  default: ''
+- name: rootDirectory
+  type: string
+  default: $(Pipeline.Workspace)
+- name: remoteDirectory
+  type: string
+  default: '/'
+- name: archiveName
+  type: string
+  default: ''
+
+
+# parameters:
+#   - name: items
+#     type: string
+#     default: two
+#     values:
+#     - one
+#     - two
+#     - three
   
 trigger: none
 
-steps: 
-# - script: echo ${{ parameters.items }}
-# - ${{ if eq(join(';', parameters.items), 'two') }}:
-#   - script: echo "Items"
-# - script: echo ${{ join(';', parameters.items) }}
-# # echo $[join(';', ${{ parameters.items }})]
+steps:
 - task: PowerShell@2
-  inputs: 
-  script: |
+  inputs:
+   script: | 
     $params = $env:REQURED_PARAMS -split ";"
     foreach($param in $params) {
       if ([string]::IsNullOrEmpty($param.Split(":")[1])) {
@@ -100,11 +110,11 @@ steps:
         Write-Host "##vso[task.complete result=Failed;]"
       }
     }
-  targetType: inline
-  pwsh: true
+   targetType: inline
+   pwsh: true
+  displayName: Check for required parameters
   env:
     REQURED_PARAMS: ${{ join(';', parameters.requiredParams) }}
-  displayName: Check for required parameters
 
 
 # variables:
