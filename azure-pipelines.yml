@@ -92,7 +92,7 @@ trigger: none
 
 steps:
 - bash: |
-    $ myarr = ${{ join(';', parameters.myObject) }}
+    myarr = ${{ join(';', parameters.myObject) }}
  
 # variables:
 #   a: $[lower('FOO')]
