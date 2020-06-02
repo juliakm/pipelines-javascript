@@ -3,7 +3,6 @@ parameters:
   - test1
   - test2
 
-
 variables:
   A: $[join(';','[foo, bar]')]
   B: $[upper('bah')]
