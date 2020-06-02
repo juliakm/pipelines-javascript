@@ -1,12 +1,5 @@
 parameters:
-- name: myFirstObject
-  type: object
-  default: default
-  values:
-   - default
-   - ubuntu
-   - windows
-- name: mySecondObject
+- name: myArray
   type: object
   default:
     - FOO
@@ -14,10 +7,8 @@ parameters:
     - ZOO
 
 variables:
-   A: ${{ join(';',parameters.myFirstObject) }} # outputs default
-   B: ${{ join(';',parameters.mySecondObject) }} # outputs nothing
+   A: ${{ join(';',parameters.myArray) }} 
 
 steps:
   - script: |
       echo $A
-      echo $B
