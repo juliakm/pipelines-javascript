@@ -1,14 +1,19 @@
 parameters:
-- name: myArray
+- name: myFirstObject
   type: object
   default: default
   values:
    - default
    - ubuntu
    - windows
+- name: mySecondObject
+  type: object
+  default:
+    foo: FOO
+    bar: BAR
 
 variables:
-   A: ${{ join(';',parameters.myArray) }}
+   A: ${{ join(';',parameters.myFirstObject) }}
 
  # A: $[join(';','[foo, bar]')]
  # B: $[upper('bah')]
