@@ -14,12 +14,9 @@ parameters:
 
 variables:
    A: ${{ join(';',parameters.myFirstObject) }}
-
- # A: $[join(';','[foo, bar]')]
- # B: $[upper('bah')]
-  #C: $[join(';','${{ parameters.myArray }}']
+   B: ${{ join(';',parameters.mySecondObject) }}
 
 steps:
   - script: |
       echo $A
-    #  echo $B
+      echo $B
