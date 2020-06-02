@@ -1,7 +1,11 @@
 parameters:
 - name: myArray
   type: string
-  default: []
+  default: test
+  values:
+   - default
+   - ubuntu
+   - windows
 
 variables:
   A: $[join(';','[foo, bar]')]
