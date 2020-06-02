@@ -10,5 +10,4 @@ variables:
    A: ${{ join(';',parameters.myArray) }} # outputs FOO;BAR;ZOO
 
 steps:
-  - script: |
-      echo $A
+  - script: echo $A
