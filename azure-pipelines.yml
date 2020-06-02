@@ -1,14 +1,11 @@
 parameters:
-  projects:
-  - test1
-  - test2
+  myArray: []
 
 variables:
   A: $[join(';','[foo, bar]')]
   B: $[upper('bah')]
-  C: $[join(';', ${{ parameters.projects }}]
+  C: $[join(';', ${{ parameters.myArray }}]
 
-#"['FOO','BAR']"
 steps:
   - script: |
       echo $A
