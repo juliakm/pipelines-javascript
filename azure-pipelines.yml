@@ -1,5 +1,7 @@
 parameters:
-  myArray: []
+- name: myArray
+  type: string
+  default: []
 
 variables:
   A: $[join(';','[foo, bar]')]
