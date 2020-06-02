@@ -9,12 +9,13 @@ parameters:
 - name: mySecondObject
   type: object
   default:
-    foo: FOO
-    bar: BAR
+    - FOO
+    - BAR
+    - ZOO
 
 variables:
-   A: ${{ join(';',parameters.myFirstObject) }}
-   B: ${{ join(';',parameters.mySecondObject) }}
+   A: ${{ join(';',parameters.myFirstObject) }} # outputs default
+   B: ${{ join(';',parameters.mySecondObject) }} # outputs nothing
 
 steps:
   - script: |
