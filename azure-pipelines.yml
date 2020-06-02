@@ -7,7 +7,7 @@ parameters:
     - ZOO
 
 variables:
-   A: ${{ join(';',parameters.myArray) }} 
+   A: ${{ join(';',parameters.myArray) }} # outputs FOO;BAR;ZOO
 
 steps:
   - script: |
