@@ -1,6 +1,6 @@
 parameters:
 - name: myArray
-  type: string
+  type: object
   default: default
   values:
    - default
@@ -8,11 +8,13 @@ parameters:
    - windows
 
 variables:
-  A: $[join(';','[foo, bar]')]
-  B: $[upper('bah')]
+   A: ${{ join(';',parameters.myArray) }}
+
+ # A: $[join(';','[foo, bar]')]
+ # B: $[upper('bah')]
   #C: $[join(';','${{ parameters.myArray }}']
 
 steps:
   - script: |
       echo $A
-      echo $B
+    #  echo $B
