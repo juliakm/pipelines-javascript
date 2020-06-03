@@ -2,9 +2,18 @@ variables:
   one: initialValue 
 
 steps:
-  - script: echo ${{ variables.initialValue }}
+  - script: |
+      echo ${{ variables.one }}
+      echo $[variables.one]
+      echo $(one)
+    displayName: First variable pass
   - script: echo '##vso[task.setvariable variable=one]secondValue'
-  - script: echo $(one)
+    displayName: Set new variable value
+  - script: |
+      echo ${{ variables.one }}
+      echo $[variables.one]
+      echo $(one)
+    displayName: Second variable pass
   
   # bash: |
   #     echo $(foo)            # This will be bar
