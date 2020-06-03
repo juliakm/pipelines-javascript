@@ -4,7 +4,7 @@ variables:
 steps:
   - script: |
       echo ${{ variables.one }} # outputs initialValue
-      echo $[one]
+      echo $[variables.one]
      # echo $(one)
     displayName: First variable pass
   - script: echo '##vso[task.setvariable variable=one]secondValue'
