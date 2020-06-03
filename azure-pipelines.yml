@@ -1,13 +1,28 @@
-parameters:
-- name: myArray
-  type: object
-  default:
-    - FOO
-    - BAR
-    - ZOO
-
 variables:
-   A: ${{ join(';',parameters.myArray) }} # outputs FOO;BAR;ZOO
+  one: initialValue 
 
 steps:
-  - script: echo $A
+  - script: echo ${{ variables.initialValue }}
+  - script: echo '##vso[task.setvariable variable=one]secondValue'
+  - script: echo $(one)
+  
+  # bash: |
+  #     echo $(foo)            # This will be bar
+  #     echo '##vso[task.setvariable variable=foo]baz'
+  #     echo $(foo)            # This will also be bar, $(foo) expands before the step
+  # - bash: echo $(foo)        # This will be baz. The variable is expanded just before the step
+
+
+# parameters:
+# - name: myArray
+#   type: object
+#   default:
+#     - FOO
+#     - BAR
+#     - ZOO
+
+# variables:
+#    A: ${{ join(';',parameters.myArray) }} # outputs FOO;BAR;ZOO
+
+# steps:
+#   - script: echo $A
