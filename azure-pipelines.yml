@@ -1,17 +1,22 @@
 variables:
-  one: initialValue 
+- group: my-variable-group
+- name: one
+  value: initialValue 
 
 steps:
   - script: |
       echo ${{ variables.one }} # outputs initialValue
-      echo $[variables.one]
+  - script: echo $(myhello) # uses macro syntax
+  - script: echo $[variables.myhello] # uses runtime expression
+
+     # echo $[variables.one]
      # echo $(one)
     displayName: First variable pass
   - script: echo '##vso[task.setvariable variable=one]secondValue'
     displayName: Set new variable value
   - script: |
       echo ${{ variables.one }} # outputs initialValue
-      echo $[one] # syntax check?
+     # echo $[one] # syntax check?
       # echo $(one) # will be initialValue
     displayName: Second variable pass
   
