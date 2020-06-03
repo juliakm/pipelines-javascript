@@ -11,7 +11,7 @@ steps:
     displayName: Set new variable value
   - script: |
       echo ${{ variables.one }} # outputs initialValue
-      # echo $(one) # will be initialValue
+      echo $(one) # will be initialValue
     displayName: Second variable pass
   
   # bash: |
