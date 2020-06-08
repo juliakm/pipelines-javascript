@@ -1,9 +1,11 @@
 variables:
 - group: my-variable-group
+- name: my-passed-variable
+  value: $[variables.myhello]
 
 steps:
 - script: echo $(myhello) # uses macro syntax
-- script: echo $[variables.myhello] # uses runtime expression
+- script: echo $(my-passed-variable) 
 
 
 # variables:
