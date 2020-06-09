@@ -1,20 +1,32 @@
-variables:
-  VMS_USER: $(vmsUser)
-  VMS_PASS: $(vmsAdminPass)
-
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: AzureFileCopy@4
-  inputs:
-    SourcePath: 'my/path'
-    azureSubscription: 'my-subscription'
-    Destination: 'AzureVMs'
-    storage: 'my-storage'
-    resourceGroup: 'my-rg'
-    vmsAdminUserName: $(VMS_USER)
-    vmsAdminPassword: $(VMS_PASS)
+# test and upload my code as an artifact named WebSite
+jobs:
+- job: Build
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - script: npm test
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(System.DefaultWorkingDirectory)'
+      artifactName: WebSite
+
+# download the artifact and deploy it only if the build job succeeded
+- job: Deploy
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - checkout: none #skip checking out the default repository resource
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download Build Artifacts'
+    inputs:
+      artifactName: WebSite
+      downloadPath: $(System.DefaultWorkingDirectory)
+
+  dependsOn: Build
+  condition: succeeded()
     
 # variables:
 # - group: my-variable-group
