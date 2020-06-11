@@ -3,7 +3,7 @@ trigger: none
 variables:
   truefalsecheck: $[length('')]
   numberzero: '33.231'
-  numberthree: '33.23'
+  numberthree: ''
   numbercheck: $[lt(variables.numberzero, variables.numberthree)]
 
 
