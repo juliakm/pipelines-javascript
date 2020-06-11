@@ -1,3 +1,5 @@
+trigger: none
+
 variables:
   false: ''
   true: 'foo'
@@ -9,7 +11,6 @@ variables:
 
 steps:
 - script: echo $(truefalsecheck)
-- script: echo $[ne($(false), $(true))]
 
 # pool:
 #   vmImage: 'ubuntu-latest'
