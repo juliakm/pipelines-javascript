@@ -1,7 +1,7 @@
 trigger: none
 
 variables:
-  truefalsecheck: ''
+  truefalsecheck: length('')
   numberzero: ''
   numberthree: '33.23'
 
