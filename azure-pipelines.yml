@@ -10,7 +10,7 @@ variables:
   someString: 'a b c'
   someVersion: 1.2.3
   numberchecktwo: $[lt(false, true)]
-  numbercheckthree: $[lt(false, true)]
+  numbercheckthree: $[lt(true, false)]
 #lt Evaluates True if left parameter is less than the right parameter 
 
 steps:
