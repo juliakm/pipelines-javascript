@@ -8,8 +8,8 @@ variables:
 
 
 steps:
-- script: echo $(myhello) # uses macro syntax
-- script: echo $(my-passed-variable) 
+- script: echo $(truefalsecheck)
+- script: echo $[ne($(false), $(true))]
 
 # pool:
 #   vmImage: 'ubuntu-latest'
