@@ -11,6 +11,7 @@ variables:
 
 steps:
 - script: echo $(truefalsecheck)
+- script: echo $(numbercheck)
 
 # pool:
 #   vmImage: 'ubuntu-latest'
