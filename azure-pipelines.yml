@@ -9,7 +9,8 @@ variables:
   someNumber: -1.2
   someString: 'a b c'
   someVersion: 1.2.3
-
+  numberchecktwo: $[lt(false, true)]
+#lt Evaluates True if left parameter is less than the right parameter 
 
 steps:
 - script: echo $(truefalsecheck)
