@@ -20,6 +20,7 @@ steps:
    echo $(someNumber)
    echo $(someString)
    echo $(someVersion)
+- script: echo $(numberchecktwo)
 
 
 # pool:
