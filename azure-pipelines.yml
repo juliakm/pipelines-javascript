@@ -1,7 +1,7 @@
 variables:
   false: ''
   true: 'foo'
-  truefalsecheck: ${{ not($(false), $(true)) }}
+  truefalsecheck: $[ne($(false), $(true))]
   numberzero: ''
   numberthree: '33.23'
 
