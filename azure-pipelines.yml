@@ -11,7 +11,8 @@ variables:
   someVersion: 1.2.3
   numberchecktwo: $[lt(false, true)] # 0 vs. 1, True
   numbercheckthree: $[lt(true, false)] # 1 vs. 0, False
-  coalesceliteral: $[coalesce(variables.someBoolean, 0, '', 'literal value')]
+  emptyString: ''
+  coalesceliteral: $[coalesce(variables.emptyString, '', 'literal value')]
 #lt Evaluates True if left parameter is less than the right parameter 
 
 steps:
