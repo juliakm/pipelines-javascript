@@ -5,13 +5,21 @@ variables:
   numberzero: '33.231'
   numberthree: ''
   numbercheck: $[lt(variables.numberzero, variables.numberthree)]
-
-
+  someBoolean: ${{ true }} # case insensitive, so True or TRUE also works
+  someNumber: ${{ -1.2 }}
+  someString: ${{ 'a b c' }}
+  someVersion: ${{ 1.2.3 }}
 
 
 steps:
 - script: echo $(truefalsecheck)
 - script: echo $(numbercheck)
+- script: |
+   echo $someBoolean
+   echo $someNumber
+   echo $someString
+   echo $someVersion
+
 
 # pool:
 #   vmImage: 'ubuntu-latest'
