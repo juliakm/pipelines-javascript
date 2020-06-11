@@ -4,6 +4,8 @@ variables:
   truefalsecheck: $[length('')]
   numberzero: ''
   numberthree: '33.23'
+  numbercheck: $[lt($[variables.numberzero], $[variables.numberthree])]
+
 
 
 
