@@ -1,9 +1,7 @@
 trigger: none
 
 variables:
-  false: ''
-  true: 'foo'
-  truefalsecheck: $[ne('', 'foo'))]
+  truefalsecheck: $[ne('','foo'))]
   numberzero: ''
   numberthree: '33.23'
 
