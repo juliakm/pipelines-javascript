@@ -5,12 +5,13 @@ variables:
   numberzero: '33.231'
   numberthree: ''
   numbercheck: $[lt(variables.numberzero, variables.numberthree)]
-  someBoolean: true # case insensitive, so True or TRUE also works
+  someBoolean: false # case insensitive, so True or TRUE also works
   someNumber: -1.2
   someString: 'a b c'
   someVersion: 1.2.3
   numberchecktwo: $[lt(false, true)] # 0 vs. 1, True
   numbercheckthree: $[lt(true, false)] # 1 vs. 0, False
+  coalesceliteral: $[coalesce(variables.someBoolean, 0, '', 'literal value')]
 #lt Evaluates True if left parameter is less than the right parameter 
 
 steps:
@@ -23,6 +24,7 @@ steps:
    echo $(someVersion)
 - script: echo $(numberchecktwo)
 - script: echo $(numbercheckthree)
+- script: echo $(coalesceliteral)
 
 
 # pool:
