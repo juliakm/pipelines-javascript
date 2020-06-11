@@ -2,8 +2,8 @@ trigger: none
 
 variables:
   firstEval: $[lt(false, true)] # 0 vs. 1, True
-  stringEval: $[eq(variables.firstEval, true)]
-  stringEvalTwo: $[eq(variables.firstEval, 'true')]
+  stringEval: $[eq(true, variables.firstEval)]
+  stringEvalTwo: $[eq('true',variables.firstEval)]
 
 steps:
 - script: echo $(firstEval)
