@@ -10,6 +10,7 @@ variables:
   someString: 'a b c'
   someVersion: 1.2.3
   numberchecktwo: $[lt(false, true)]
+  numbercheckthree: $[lt(false, true)]
 #lt Evaluates True if left parameter is less than the right parameter 
 
 steps:
@@ -21,6 +22,7 @@ steps:
    echo $(someString)
    echo $(someVersion)
 - script: echo $(numberchecktwo)
+- script: echo $(numbercheckthree)
 
 
 # pool:
