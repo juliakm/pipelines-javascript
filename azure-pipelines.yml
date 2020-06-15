@@ -1,15 +1,20 @@
 trigger: none
 
-variables:
-  firstEval: $[lt(false, true)] # 0 vs. 1, True
-  stringEval: $[eq(true, variables.firstEval)]
-  stringEvalTwo: $[eq('true',variables.firstEval)]
+stages:
+- stage: A
+  jobs:
+  - job: A1
+    steps:
+     - script: echo "##vso[task.setvariable variable=skipsubsequent;isOutput=true]false"
+       name: printvar
 
-steps:
-- script: echo $(firstEval)
-- script: echo $(stringEval)
-- script: echo $(stringEvalTwo)
-
+- stage: B
+  condition: and(succeeded(), ne(stageDependencies.A.outputs['A1.printvar.skipsubsequent'], 'true'))
+  dependsOn: A
+  jobs:
+  - job: B1
+    steps:
+    - script: echo hello from Stage B
 
 
 # variables:
