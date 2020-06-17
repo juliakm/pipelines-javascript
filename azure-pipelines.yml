@@ -9,6 +9,7 @@ steps:
   - script: echo Hello!
     condition: and(variables.isMain, succeeded())
   - script: echo $(Build.SourceBranch)
+  - script: echo $(isMain)
 
 
 # variables:
