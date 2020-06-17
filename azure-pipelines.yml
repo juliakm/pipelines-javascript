@@ -1,15 +1,11 @@
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
-
 trigger: none
 
 steps:
   - script: echo Hello!
     condition: and(variables.isMain, succeeded())
-  - script: echo $(Build.SourceBranch)
-  - script: echo $(isMain)
-
 
 # variables:
 #   truefalsecheck: $[length('')]
