@@ -1,5 +1,5 @@
 variables:
-  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/masterish')]
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 stages:
 - stage: A
