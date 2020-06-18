@@ -6,7 +6,7 @@ stages:
   jobs:
   - job: A1
     steps:
-      - script: Hello Stage A!
+      - script: echo Hello Stage A!
 
 - stage: B
   dependsOn: A
