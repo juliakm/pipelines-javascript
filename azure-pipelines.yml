@@ -9,7 +9,6 @@ stages:
       - script: echo Hello Stage A!
 
 - stage: B
-  dependsOn: A
   condition: eq(variables.isMain, true)
   jobs:
   - job: B1
