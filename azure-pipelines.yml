@@ -10,7 +10,7 @@ stages:
 
 - stage: B
   dependsOn: A
-  condition: and($(isMain), succeeded())
+  condition: eq(variables.isMain, true)
   jobs:
   - job: B1
     steps:
