@@ -3,7 +3,6 @@ variables:
 
 stages:
 - stage: Deploy
-  dependsOn: Test
   jobs:
     - deployment: Infrasctructure_Development
       displayName: Infrastructure
