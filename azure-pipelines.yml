@@ -2,19 +2,50 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 stages:
-- stage: A
+- stage: Deploy
+  dependsOn: Test
   jobs:
-  - job: A1
-    steps:
-      - script: echo Hello Stage A!
+    - deployment: Infrasctructure_Development
+      displayName: Infrastructure
+      environment: Development
+      strategy:
+        runOnce:
+          deploy:
+            pool: 
+              vmImage: windows-2019
+            steps:
+              - task: PowerShell@2
+                inputs:
+                  targetType: inline
+                  script: echo hello                  
+    - deployment: Applications_Development
+      displayName: Applications
+      environment: Development
+      strategy:
+        runOnce:
+          deploy:
+            pool: 
+              vmImage: windows-2019
+              steps:
+                - task: PowerShell@2
+                  inputs:
+                    targetType: inline
+                    script: echo hello
 
-- stage: B
-  condition: eq(variables.isMain, true)
-  jobs:
-  - job: B1
-    steps:
-      - script: echo Hello Stage B!
-      - script: echo $(isMain)
+# stages:
+# - stage: A
+#   jobs:
+#   - job: A1
+#     steps:
+#       - script: echo Hello Stage A!
+
+# - stage: B
+#   condition: eq(variables.isMain, true)
+#   jobs:
+#   - job: B1
+#     steps:
+#       - script: echo Hello Stage B!
+#       - script: echo $(isMain)
 
 
 # variables:
