@@ -2,13 +2,13 @@ trigger: none
 
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
-  foo: ''
+  foo: 'blank'
   #fooCheck: $[ne(variables['foo'], Null)]
-  foo_check: $[ne(variables['foo'], '')]
+  fooCheck: $[ne(variables['foo'], '')]
 
 steps:
-#- script: echo $fooCheck
-- script: echo $[ne($(nada),'')]
+- script: echo $fooCheck
+
 
 
 # - stage: Deploy
