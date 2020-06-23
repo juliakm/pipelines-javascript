@@ -1,6 +1,8 @@
+trigger: none
+
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
-  foo: 
+  foo: ''
   fooCheck: $[ne(variables['foo'], null)]
   foo_check: $[ne(variables['foo'], '')]
 
