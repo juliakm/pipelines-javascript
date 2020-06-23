@@ -3,11 +3,11 @@ trigger: none
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
   foo: ''
-  fooCheck: $[ne(variables['foo'], Null)]
+  #fooCheck: $[ne(variables['foo'], Null)]
   foo_check: $[ne(variables['foo'], '')]
 
 steps:
-- script: echo $fooCheck
+#- script: echo $fooCheck
 - script: echo $foo_check
 
 
