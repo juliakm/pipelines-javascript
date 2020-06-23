@@ -1,5 +1,9 @@
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  foo: 
+  foo_check: $[ne(variable['foo'], null)]
+  foo_check: $[ne(variable['foo'], '')]
+
 
 stages:
 - stage: Deploy
