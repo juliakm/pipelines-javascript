@@ -1,39 +1,42 @@
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
   foo: 
-  foo_check: $[ne(variable['foo'], null)]
+  fooCheck: $[ne(variable['foo'], null)]
   foo_check: $[ne(variable['foo'], '')]
 
+steps:
+- script: echo $fooCheck
+- script: echo $foo_check
 
-stages:
-- stage: Deploy
-  jobs:
-    - deployment: Infrasctructure_Development
-      displayName: Infrastructure
-      environment: Development
-      strategy:
-        runOnce:
-          deploy:
-            pool: 
-              vmImage: windows-2019
-            steps:
-              - task: PowerShell@2
-                inputs:
-                  targetType: inline
-                  script: echo hello                  
-    - deployment: Applications_Development
-      displayName: Applications
-      environment: Development
-      strategy:
-        runOnce:
-          deploy:
-            pool: 
-              vmImage: windows-2019
-            steps:
-              - task: PowerShell@2
-                inputs:
-                  targetType: inline
-                  script: echo hello
+
+# - stage: Deploy
+#   jobs:
+#     - deployment: Infrasctructure_Development
+#       displayName: Infrastructure
+#       environment: Development
+#       strategy:
+#         runOnce:
+#           deploy:
+#             pool: 
+#               vmImage: windows-2019
+#             steps:
+#               - task: PowerShell@2
+#                 inputs:
+#                   targetType: inline
+#                   script: echo hello                  
+#     - deployment: Applications_Development
+#       displayName: Applications
+#       environment: Development
+#       strategy:
+#         runOnce:
+#           deploy:
+#             pool: 
+#               vmImage: windows-2019
+#             steps:
+#               - task: PowerShell@2
+#                 inputs:
+#                   targetType: inline
+#                   script: echo hello
 
 # stages:
 # - stage: A
