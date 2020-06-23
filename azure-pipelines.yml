@@ -4,11 +4,11 @@ variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
   foo: 'blank'
   #fooCheck: $[ne(variables['foo'], Null)]
-  fooCheck: $[ne(variables['foo'], '')]
+  fooCheck: $[ne(variables.foo, '')]
 
 steps:
-- script: echo $fooCheck
-- script: echo foo
+- script: echo $(fooCheck)
+- script: echo $(foo)
 
 
 
