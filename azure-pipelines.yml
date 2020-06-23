@@ -8,7 +8,7 @@ variables:
 
 steps:
 #- script: echo $fooCheck
-- script: echo $foo_check
+- script: echo $[ne(variables['nada'], '')]
 
 
 # - stage: Deploy
