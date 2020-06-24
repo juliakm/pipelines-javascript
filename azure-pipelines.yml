@@ -1,7 +1,7 @@
 trigger: none
 
 variables: 
-  source: $[Build.SourceBranch]
+  source: $[Build][SourceBranch]
 
 steps:
 - script: echo $(source)
