@@ -1,12 +1,13 @@
 trigger: none
 
 variables: 
-  source: $variables['Build.SourceBranch']
+  source: variables['Build.SourceBranch']
 
 steps:
 - script: echo $(source)
 - script: echo $(Build.SourceBranch)
-- script: echo $(Build.SourceBranchName)
+- script: echo variables['Build.SourceBranch']
+
 
 
 
