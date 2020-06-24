@@ -1,15 +1,14 @@
 trigger: none
 
 variables:
-  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
-  foo: ''
+  #isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+ # foo: ''
   #fooCheck: $[ne(variables['foo'], Null)]
-  fooCheck: $[ne(variables['foo'], '')]
+  #fooCheck: $[ne(variables['foo'], '')]
 
 steps:
-- script: echo $(fooCheck)
-- script: echo $(foo)
 - script: echo $(Build.SourceBranch)
+- script: echo $[variables['Build.SourceBranch']]
 
 
 
