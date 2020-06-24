@@ -1,12 +1,12 @@
 trigger: none
 
-variables: 
-  source: $(Build.SourceBranch)
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+  isMainTwo: $[eq(variables['Build']['SourceBranch'], 'refs/heads/master')]
 
 steps:
-- script: echo $(source)
-- script: echo $(Build.SourceBranch)
-- script: echo variables['Build']['SourceBranch']
+ - script: echo $(isMain)
+ - script: echo $(isMainTwo)
 
 
 
