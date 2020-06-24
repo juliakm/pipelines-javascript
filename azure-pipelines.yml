@@ -9,6 +9,7 @@ variables:
 steps:
 - script: echo $(fooCheck)
 - script: echo $(foo)
+- script: echo $(Build.SourceBranch)
 
 
 
