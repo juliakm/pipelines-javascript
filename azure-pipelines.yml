@@ -8,6 +8,7 @@ steps:
  - script: echo $(isMain)
  - script: echo $(isMainTwo)
  - script: echo $(System.PullRequest.SourceRepositoryURI)
+ - script: echo $(SYSTEM_PULLREQUEST_SOURCEBRANCH)
 
 
 
