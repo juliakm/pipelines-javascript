@@ -1,4 +1,4 @@
-trigger: none
+trigger: master
 
 variables:
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
