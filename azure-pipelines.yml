@@ -7,48 +7,49 @@ stages:
         steps:
           - script: 'true'
   - stage: B
-    dependsOn: A
+    dependsOn: B
+    condition: succeeded()  
     jobs:
       - job: jB
         pool:
           vmImage: 'ubuntu-18.04'
         steps:
-          - script: 'fail'
-  - stage: C_OK
+          - script: 'true'
+  - stage: C
     dependsOn: B
-    # condition: succeeded()  # default
+    condition: succeeded()  
     jobs:
       - job: jC
         pool:
           vmImage: 'ubuntu-18.04'
         steps:
           - script: 'true'
-  - stage: C_KO
-    dependsOn: B
-    condition: failed()
-    jobs:
-      - job: jC
-        pool:
-          vmImage: 'ubuntu-18.04'
-        steps:
-            - script: 'true'
-  - stage: D
-    dependsOn: ['C_OK', 'C_KO']
-    condition: or(succeeded('C_OK'), succeeded('C_KO'))
-    jobs:
-        - job: jD
-          pool:
-            vmImage: 'ubuntu-18.04'
-          steps:
-            - script: 'true'
-  - stage: E
-    dependsOn: D
-    jobs:
-        - job: jE
-          pool:
-            vmImage: 'ubuntu-18.04'
-          steps:
-            - script: 'true'
+  # - stage: C_KO
+  #   dependsOn: B
+  #   condition: failed()
+  #   jobs:
+  #     - job: jC
+  #       pool:
+  #         vmImage: 'ubuntu-18.04'
+  #       steps:
+  #           - script: 'true'
+  # - stage: D
+  #   dependsOn: ['C_OK', 'C_KO']
+  #   condition: or(succeeded('C_OK'), succeeded('C_KO'))
+  #   jobs:
+  #       - job: jD
+  #         pool:
+  #           vmImage: 'ubuntu-18.04'
+  #         steps:
+  #           - script: 'true'
+  # - stage: E
+  #   dependsOn: D
+  #   jobs:
+  #       - job: jE
+  #         pool:
+  #           vmImage: 'ubuntu-18.04'
+  #         steps:
+  #           - script: 'true'
 
 # - stage: Deploy
 #   jobs:
