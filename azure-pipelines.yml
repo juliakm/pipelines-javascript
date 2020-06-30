@@ -7,7 +7,7 @@ stages:
         steps:
           - script: 'true'
   - stage: B
-    dependsOn: B
+    dependsOn: A
     condition: succeeded()  
     jobs:
       - job: jB
