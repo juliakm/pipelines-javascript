@@ -6,6 +6,7 @@ stages:
           vmImage: 'ubuntu-18.04'
         steps:
           - script: 'true'
+          - script: echo 'testing123'
   - stage: B
     dependsOn: A
     condition: succeeded()  
