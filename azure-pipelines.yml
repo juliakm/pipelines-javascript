@@ -1,231 +1,26 @@
-stages:
-  - stage: A
-    jobs:
-      - job: jA
-        pool:
-          vmImage: 'ubuntu-18.04'
-        steps:
-          - script: 'true'
-          - script: echo 'testing123'
-  - stage: B
-    dependsOn: A
-    condition: succeeded()  
-    jobs:
-      - job: jB
-        pool:
-          vmImage: 'ubuntu-18.04'
-        steps:
-          - script: 'true'
-  - stage: C
-    dependsOn: B
-    condition: succeeded()  
-    jobs:
-      - job: jC
-        pool:
-          vmImage: 'ubuntu-18.04'
-        steps:
-          - script: 'true'
-  # - stage: C_KO
-  #   dependsOn: B
-  #   condition: failed()
-  #   jobs:
-  #     - job: jC
-  #       pool:
-  #         vmImage: 'ubuntu-18.04'
-  #       steps:
-  #           - script: 'true'
-  # - stage: D
-  #   dependsOn: ['C_OK', 'C_KO']
-  #   condition: or(succeeded('C_OK'), succeeded('C_KO'))
-  #   jobs:
-  #       - job: jD
-  #         pool:
-  #           vmImage: 'ubuntu-18.04'
-  #         steps:
-  #           - script: 'true'
-  # - stage: E
-  #   dependsOn: D
-  #   jobs:
-  #       - job: jE
-  #         pool:
-  #           vmImage: 'ubuntu-18.04'
-  #         steps:
-  #           - script: 'true'
+trigger:
+- master
 
-# - stage: Deploy
-#   jobs:
-#     - deployment: Infrasctructure_Development
-#       displayName: Infrastructure
-#       environment: Development
-#       strategy:
-#         runOnce:
-#           deploy:
-#             pool: 
-#               vmImage: windows-2019
-#             steps:
-#               - task: PowerShell@2
-#                 inputs:
-#                   targetType: inline
-#                   script: echo hello                  
-#     - deployment: Applications_Development
-#       displayName: Applications
-#       environment: Development
-#       strategy:
-#         runOnce:
-#           deploy:
-#             pool: 
-#               vmImage: windows-2019
-#             steps:
-#               - task: PowerShell@2
-#                 inputs:
-#                   targetType: inline
-#                   script: echo hello
+pool:
+  vmImage: 'ubuntu-latest'
 
-# stages:
-# - stage: A
-#   jobs:
-#   - job: A1
-#     steps:
-#       - script: echo Hello Stage A!
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
 
-# - stage: B
-#   condition: eq(variables.isMain, true)
-#   jobs:
-#   - job: B1
-#     steps:
-#       - script: echo Hello Stage B!
-#       - script: echo $(isMain)
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
 
+- task: CopyFiles@2
+  inputs:
+    Contents: 'build/**' # Pull the build directory (React)
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
-# variables:
-#  GLOBAL_MYSECRET: $(mySecret) # this will not work because the variable needs to be mapped as env
-#  GLOBAL_MY_MAPPED_ENV_VAR: foo # this will not work because the variable needs to be mapped as env
-
-# steps:
-
-# - powershell: |
-#     # Using an input-macro:
-#     Write-Host "This works: $(mySecret)"
-
-#     # Using the env var directly:
-#     Write-Host "This does not work: $env:MYSECRET"
-
-#     # Using the env var through the variables mapping will not work:
-#     Write-Host "This does not work either: $env:GLOBAL_MYSECRET"
-
-#     # Using the global var mapped in the pipeline. It is not a secret var:
-#     Write-Host "This works: $env:GLOBAL_MY_MAPPED_ENV_VAR" 
-
-#     # Using the mapped env var:
-#     Write-Host "This works: $env:MY_MAPPED_ENV_VAR"    # Recommended
-
-#   env:
-#     MY_MAPPED_ENV_VAR: $(mySecret) # right way to map to an env variable
-
-
-# variables:
-#   truefalsecheck: $[length('')]
-#   numberzero: '33.231'
-#   numberthree: ''
-#   numbercheck: $[lt(variables.numberzero, variables.numberthree)]
-#   someBoolean: false # case insensitive, so True or TRUE also works
-#   someNumber: -1.2
-#   someString: 'a b c'
-#   someVersion: 1.2.3
-#   numberchecktwo: $[lt(false, true)] # 0 vs. 1, True
-#   numbercheckthree: $[lt(true, false)] # 1 vs. 0, False
-#   emptyString: ''
-#   coalesceliteral: $[coalesce(variables.emptyString, '', 'literal value')]
-# #lt Evaluates True if left parameter is less than the right parameter 
-
-# steps:
-# - script: echo $(truefalsecheck)
-# - script: echo $(numbercheck)
-# - script: |
-#    echo $(someBoolean)
-#    echo $(someNumber)
-#    echo $(someString)
-#    echo $(someVersion)
-# - script: echo $(numberchecktwo)
-# - script: echo $(numbercheckthree)
-# - script: echo $(coalesceliteral)
-
-
-# pool:
-#   vmImage: 'ubuntu-latest'
-
-# stages:
-# - stage: A
-#   # test and upload my code as an artifact named WebSite
-#   jobs:
-#   # Set an output variable in a lifecycle hook of a deployment job executing runOnce strategy
-#   - deployment: A1
-#     pool:
-#       vmImage: 'ubuntu-16.04'
-#     environment: staging
-#     strategy:                  
-#       runOnce:
-#         deploy:
-#           steps:
-#           - script: echo "##vso[task.setvariable variable=myOutputVar;isOutput=true]this is the deployment variable value"
-#             name: setvarStep
-#           - script: echo $(setvarStep.myOutputVar)
-#             name: echovar
-
-#   # Map the variable from the job
-#   - job: B1
-#     dependsOn: A1
-#     pool:
-#       vmImage: 'ubuntu-16.04'
-#     variables:
-#       myVarFromDeploymentJob: $[ dependencies.A.outputs['A.setvarStep.myOutputVar'] ]
-#     steps:
-#     - script: "echo $(myVarFromDeploymentJob)"
-#       name: echovar
-    
-# variables:
-# - group: my-variable-group
-# - name: my-passed-variable
-#   value: $[variables.myhello]
-
-# steps:
-# - script: echo $(myhello) # uses macro syntax
-# - script: echo $(my-passed-variable) 
-
-
-# variables:
-# - name: one
-#   value: initialValue 
-
-# steps:
-#   - script: |
-#       echo ${{ variables.one }} # outputs initialValue
-#       echo $(one)
-#     displayName: First variable pass
-#   - script: echo '##vso[task.setvariable variable=one]secondValue'
-#     displayName: Set new variable value
-#   - script: |
-#       echo ${{ variables.one }} # outputs initialValue
-#       echo $(one) # will be initialValue
-#     displayName: Second variable pass
-  
-  # bash: |
-  #     echo $(foo)            # This will be bar
-  #     echo '##vso[task.setvariable variable=foo]baz'
-  #     echo $(foo)            # This will also be bar, $(foo) expands before the step
-  # - bash: echo $(foo)        # This will be baz. The variable is expanded just before the step
-
-
-# parameters:
-# - name: myArray
-#   type: object
-#   default:
-#     - FOO
-#     - BAR
-#     - ZOO
-
-# variables:
-#    A: ${{ join(';',parameters.myArray) }} # outputs FOO;BAR;ZOO
-
-# steps:
-#   - script: echo $A
+- task: PublishBuildArtifacts@1
+  inputs: 
+    pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
+    ArtifactName: 'www' # output artifact named www
