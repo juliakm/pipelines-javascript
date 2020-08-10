@@ -10,7 +10,7 @@ pool:
 
 steps:
 - script: echo "Start"
-- ${{ if eq(variables.foo, 'testing') }}:
+- ${{ if eq(variables.foo, 'test') }}:
   - script: echo "testing 123"
 
 
