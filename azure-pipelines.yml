@@ -1,3 +1,7 @@
+variables:
+  - name: foo
+    value: test
+    
 trigger:
 - none
 
@@ -5,22 +9,27 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+- script: echo "Start"
+- ${{ if eq(variables.foo, 'testing') }}:
+  - script: echo "testing 123"
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
 
-- task: CopyFiles@2
-  inputs:
-    Contents: 'dist/**' 
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '10.x'
+#   displayName: 'Install Node.js'
 
-- task: PublishBuildArtifacts@1
-  inputs: 
-    pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
-    ArtifactName: 'www' # output artifact named www
+# - script: |
+#     npm install
+#     npm run build
+#   displayName: 'npm install and build'
+
+# - task: CopyFiles@2
+#   inputs:
+#     Contents: 'dist/**' 
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+# - task: PublishBuildArtifacts@1
+#   inputs: 
+#     pathtoPublish: $(Build.ArtifactStagingDirectory) # dist or build files
+#     ArtifactName: 'www' # output artifact named www
