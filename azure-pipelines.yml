@@ -11,7 +11,7 @@ jobs:
   - job: A
     steps:
     - script: echo I did a thing
-    condition: eq('${{ variables.testNull }}', '')
+    condition: eq('${{ variables.testNull }}', null)
 
 # - task: NodeTool@0
 #   inputs:
