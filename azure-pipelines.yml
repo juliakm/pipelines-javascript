@@ -1,18 +1,14 @@
-variables:
-  - name: foo
-    value: test
-    
-trigger:
-- none
 
-pool:
-  vmImage: 'ubuntu-latest'
+parameters:
+- name: doThing
+  default: false # value passed to the condition
+  type: boolean
 
-steps:
-- script: echo "Start"
-- ${{ if eq(variables.foo, 'test') }}:
-  - script: echo "testing 123"
-
+jobs:
+  - job: A
+    steps:
+    - script: echo I did a thing
+    condition: eq('${{ parameters.doThing }}', true)
 
 # - task: NodeTool@0
 #   inputs:
