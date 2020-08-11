@@ -4,11 +4,14 @@ parameters:
   default: '' # value passed to the condition
   type: string
 
+variables:
+- name: testNull
+  value: ''
 jobs:
   - job: A
     steps:
     - script: echo I did a thing
-    condition: eq('${{ parameters.doThing }}', '')
+    condition: eq('${{ variables.testNull }}', '')
 
 # - task: NodeTool@0
 #   inputs:
