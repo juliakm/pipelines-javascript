@@ -1,7 +1,7 @@
 
 parameters:
 - name: doThing
-  default: false # value passed to the condition
+  default: true # value passed to the condition
   type: boolean
 
 jobs:
