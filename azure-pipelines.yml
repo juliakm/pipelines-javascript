@@ -1,14 +1,14 @@
 
 parameters:
 - name: doThing
-  default: true # value passed to the condition
-  type: boolean
+  default: '' # value passed to the condition
+  type: string
 
 jobs:
   - job: A
     steps:
     - script: echo I did a thing
-    condition: eq('${{ parameters.doThing }}', true)
+    condition: eq('${{ parameters.doThing }}', '')
 
 # - task: NodeTool@0
 #   inputs:
