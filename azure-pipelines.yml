@@ -2,27 +2,21 @@ trigger:
 - master
 
 stages:
-- stage: S0
+- stage: A
   jobs:
-  - job: J0
-    pool:
-      vmImage: ubuntu-latest
+  - job: A1
     steps:
-    - bash: echo '##vso[task.setvariable variable=crosser;isOutput=true]'true
-      name: output
-- stage: S1
-  variables:
-    rtStage: $[dependencies.S0.outputs['J0.output.crosser']]
+     - bash: echo "##vso[task.setvariable variable=shouldrun;isOutput=true]true"
+       name: printvar
+
+- stage: B
+  condition: and(succeeded(), eq(dependencies.A.outputs['A1.printvar.shouldrun'], 'true'))
+  dependsOn: A
   jobs:
-  - job: J0
-    pool:
-      vmImage: ubuntu-latest
+  - job: B1
     steps:
-    - bash: |
-        echo output
-        variable rtStage $(rtStage)
-        environment rtStage $RTSTAGE
-      name: jobAcrossStages
+    - script: echo hello from Stage B
+    - script: echo $[dependencies.A.outputs['A1.printvar.shouldrun']]
 
 
 # variables:
