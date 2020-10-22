@@ -1,13 +1,39 @@
+trigger:
+- master
 
-variables:
-- name: testNull
-  value: ''
-
-jobs:
-  - job: A
+stages:
+- stage: S0
+  jobs:
+  - job: J0
+    pool:
+      vmImage: ubuntu-latest
     steps:
-    - script: echo testNull is blank
-    condition: eq('${{ variables.testNull }}', '')
+    - bash: echo '##vso[task.setvariable variable=crosser;isOutput=true]'true
+      name: output
+- stage: S1
+  variables:
+    rtStage: $[dependencies.S0.outputs['J0.output.crosser']]
+  jobs:
+  - job: J0
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - bash: |
+        echo output'
+        'variable rtStage $(rtStage)'
+        'environment rtStage $RTSTAGE
+      name: jobAcrossStages
+
+
+# variables:
+# - name: testNull
+#   value: ''
+
+# jobs:
+#   - job: A
+#     steps:
+#     - script: echo testNull is blank
+#     condition: eq('${{ variables.testNull }}', '')
 
 # - task: NodeTool@0
 #   inputs:
