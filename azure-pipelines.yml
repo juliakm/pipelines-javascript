@@ -19,9 +19,9 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - bash: |
-        echo output'
-        'variable rtStage $(rtStage)'
-        'environment rtStage $RTSTAGE
+        echo output
+        variable rtStage $(rtStage)
+        environment rtStage $RTSTAGE
       name: jobAcrossStages
 
 
