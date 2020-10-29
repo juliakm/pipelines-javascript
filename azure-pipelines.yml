@@ -4,5 +4,11 @@ variables:
 
 steps:
 - script: echo 'fred'
-- bash: |
-  echo "##vso[task.logissue type=error]Something went very wrong"
+- powershell: 
+  ##[group]Beginning of a group
+  ##[warning]Warning message	##[warning]Warning message
+  ##[error]Error message	##[error]Error message
+  ##[section]Start of a section
+  ##[debug]Debug-only text	##[debug]Debug-only text
+  ##[command]Command-line being run	##[command]Command-line being run
+  ##[endgroup]	##[endgroup]
