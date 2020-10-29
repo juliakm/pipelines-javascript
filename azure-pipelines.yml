@@ -3,7 +3,15 @@ variables:
   value: MyJob
 
 steps:
-- powershell: 
+- bash: |
+   echo "##[group]Beginning of a group"
+    echo "##[warning]Warning message"
+    echo "##[error]Error message"
+    echo "##[section]Start of a section"
+    echo "##[debug]Debug-only text"
+    echo "##[command]Command-line being run"
+    echo "##[endgroup]"
+- powershell: |
     Write-Host "##[section] This is colored green!"
     Write-Host "##[command] This is colored blue!"
     Write-Host "##[debug] This is colored gray!"
