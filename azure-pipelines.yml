@@ -6,13 +6,14 @@ jobs:
 - job: ${{ variables.jobName }}  #Error: Job $(jobName) has an invalid name. Valid names may only contain alphanumeric characters and '_' and may not start with a number.
   steps:
   - script: echo 'fred'
-
-##[group]Beginning of a group
-##[warning]Warning message
-##[error]Error message
-##[debug]Debug text
-##[command]Command-line being run
-##[endgroup]
+  - script: |
+  echo "##vso[task.logissue type=error]Something went very wrong."
+  ##[group]Beginning of a group
+  ##[warning]Warning message
+  ##[error]Error message
+  ##[debug]Debug text
+  ##[command]Command-line being run
+  ##[endgroup]
 
 # trigger:
 # - master
