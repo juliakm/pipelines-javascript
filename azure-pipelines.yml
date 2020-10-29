@@ -8,12 +8,12 @@ jobs:
   - script: echo 'fred'
   - script: |
   echo "##vso[task.logissue type=error]Something went very wrong."
-  ##[group]Beginning of a group
+  
   ##[warning]Warning message
   ##[error]Error message
   ##[debug]Debug text
   ##[command]Command-line being run
-  ##[endgroup]
+  
 
 # trigger:
 # - master
