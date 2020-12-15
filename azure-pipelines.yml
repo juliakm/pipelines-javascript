@@ -23,5 +23,5 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**' # Pull the build directory (React)
+    Contents: '$(Build.Repository.LocalPath)/**' # Pull the build directory (React)
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
