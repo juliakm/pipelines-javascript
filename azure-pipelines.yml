@@ -5,18 +5,20 @@ pool:
    vmImage: windows-latest
 
 steps:
+- checkout: none
 - script: |
-   echo "##vso[task.setvariable variable=first;]foo"
-   displayName: foo
-   continueOnError: true
+     echo "##vso[task.setvariable variable=first;]foo"
+  displayName: foo
+  continueOnError: true
 - script: |
-   echo "##vso[task.setvariable variable=second;]foo:bar"
-   displayName: foo:bar
-   continueOnError: true
+     echo "##vso[task.setvariable variable=second;]foo:bar"
+  displayName: foo:bar
+  continueOnError: true
 - script: |
-   echo "##vso[task.setvariable variable=third;]foo%3abar"
-   displayName: foo%3bar
-   continueOnError: true
+     echo "##vso[task.setvariable variable=third;]foo%3abar"
+  displayName: foo%3bar
+  continueOnError: true
+
 - script: |
     echo $FIRST
     echo $SECOND
