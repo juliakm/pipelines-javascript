@@ -20,9 +20,9 @@ steps:
   continueOnError: true
 
 - script: |
-    echo $FIRST
-    echo $SECOND
-    echo $THIRD
+    echo $(FIRST)
+    echo $(SECOND)
+    echo $(THIRD)
 
 
 # variables:
