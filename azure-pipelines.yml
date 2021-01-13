@@ -10,12 +10,20 @@ jobs:
     vmImage: 'ubuntu-16.04'
   steps:
   - bash: echo "Hello world"
-  ##[group]Beginning of a group
-  ##[warning]Warning message
-  ##[error]Error message
-  ##[debug]Debug text
-  ##[command]Command-line being run
-  ##[endgroup]
+  - powershell: |
+      Write-Host "##[group]Beginning of a group"
+      Write-Host "##[warning]Warning message"
+      Write-Host "##[error]Error message"
+      Write-Host "##[debug]Debug text"
+      Write-Host "##[command]Command-line being run"
+      Write-Host "##[endgroup]"
+
+  
+  
+  
+  
+  
+  
 
 
 
