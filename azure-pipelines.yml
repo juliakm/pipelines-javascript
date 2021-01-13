@@ -5,24 +5,18 @@ pool:
    vmImage: ubuntu-latest
 
 jobs:
-- job: waitForValidation
-  displayName: Wait for external validation  
-  pool: server    
-  timeoutInMinutes: 4320 # job times out in 3 days
-  steps:   
-   - task: ManualValidation@0
-     timeoutInMinutes: 1440 # task times out in 1 day
-     inputs:
-         notifyUsers: |
-            jukullam@microsoft.com
-         instructions: 'Please validate the build configuration and resume'
-         onTimeout: 'resume'
-
 - job: myJob
   pool:
     vmImage: 'ubuntu-16.04'
   steps:
   - bash: echo "Hello world"
+  ##[group]Beginning of a group
+  ##[warning]Warning message
+  ##[error]Error message
+  ##[debug]Debug text
+  ##[command]Command-line being run
+  ##[endgroup]
+
 
 
 
