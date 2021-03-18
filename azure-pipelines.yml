@@ -10,9 +10,7 @@ jobs:
   environment: 
     name: ContosoDeploy
     resourceType: VirtualMachine
-    tags: |
-      windows
-      ubuntu
+    tags: windows, ubuntu
   strategy:
    runOnce:
      deploy:   
