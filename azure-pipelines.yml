@@ -14,14 +14,7 @@ jobs:
    runOnce:
      deploy:   
       steps:
-        - bash: echo "Hello world"
-        - powershell: |
-            Write-Host "##[group]Beginning of a group"
-            Write-Host "##[warning]Warning message"
-            Write-Host "##[error]Error message"
-            Write-Host "##[debug]Debug text"
-            Write-Host "##[command]Command-line being run"
-            Write-Host "##[endgroup]"
+        - script: echo "Hello world"
 
     
   
