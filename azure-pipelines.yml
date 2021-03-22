@@ -24,7 +24,7 @@ steps:
    connectionType: 'connectedServiceNameARM'
    azureServiceConnection: 'DevOps Pipelines - ARM Horizontal Work (82c135d4-f813-4bec-a93e-60e4323918ee)'
    method: 'POST'
-   waitForCompletion: 'false'
+   waitForCompletion: 'true'
 
 
 # stages:
