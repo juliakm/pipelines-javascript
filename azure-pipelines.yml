@@ -4,36 +4,37 @@ trigger:
 pool: 
    vmImage: ubuntu-latest
 
-- stage: 'first'
-  jobs:
-  - job: 'firststage_job1'
-    steps:
-    - script: |
-             echo "attempt is changing with number of attempts"
-             echo "current attempt is $(system.stageattempt)"
-             exit 1
-      displayName: 'ischanging-$(system.stageattempt)'     
-      continueOnError: true
+stages:
+  - stage: 'first'
+    jobs:
+    - job: 'firststage_job1'
+      steps:
+      - script: |
+              echo "attempt is changing with number of attempts"
+              echo "current attempt is $(system.stageattempt)"
+              exit 1
+        displayName: 'ischanging-$(system.stageattempt)'     
+        continueOnError: true
 
-           
-- stage: 'second'
-  dependsOn: 
-   - first
-  jobs:
-  - deployment: DeployWeb1
-    timeoutInMinutes: 7200
-    displayName: job1
-    environment: 
-      name: ContosoDeploy
-      resourceType: VirtualMachine
-    strategy:
-     runOnce:
-       deploy:
-         steps:
-         - script: |
-             echo "attempt is changing with number of attempts"
-             echo "current attempt is $(system.stageattempt)"
-             exit 1
-           displayName: "notchanging-$(system.stageattempt)"
-           continueOnError: true
+            
+  - stage: 'second'
+    dependsOn: 
+    - first
+    jobs:
+    - deployment: DeployWeb1
+      timeoutInMinutes: 7200
+      displayName: job1
+      environment: 
+        name: ContosoDeploy
+        resourceType: VirtualMachine
+      strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: |
+              echo "attempt is changing with number of attempts"
+              echo "current attempt is $(system.stageattempt)"
+              exit 1
+            displayName: "notchanging-$(system.stageattempt)"
+            continueOnError: true
 
