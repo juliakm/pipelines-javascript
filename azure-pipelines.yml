@@ -4,17 +4,15 @@ trigger:
 pool: 
    vmImage: ubuntu-latest
 
-jobs:
-- job: agentless
-  steps:
-  - task: ManualValidation@0
-    timeoutInMinutes: 1440 # task times out in 1 day
-    inputs:
-      notifyUsers: |
-        test@test.com
-        example@example.com
-      instructions: 'Please validate the build configuration and resume'
-      onTimeout: 'resume'
+steps:
+- task: ManualValidation@0
+  timeoutInMinutes: 1440 # task times out in 1 day
+  inputs:
+    notifyUsers: |
+      test@test.com
+      example@example.com
+    instructions: 'Please validate the build configuration and resume'
+    onTimeout: 'resume'
   # - task: Delay@1
   #   inputs:
   #       delayForMinutes: '2'
