@@ -17,6 +17,10 @@ stages:
               exit 1
         displayName: 'ischanging-$(system.stageattempt)'     
         continueOnError: true
+      - task: ManualValidation@0
+        inputs:
+          notifyUsers: 'jukullam@microsoft.com'
+          onTimeout: 'resume'
   - stage: 'second'
     dependsOn: 
     - first
