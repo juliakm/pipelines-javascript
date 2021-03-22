@@ -14,6 +14,10 @@ steps:
       $uriAccount = $UriOrga + "_apis/projects?api-version=5.1"
 
       Invoke-RestMethod -Uri $uriAccount -Method get -Headers $AzureDevOpsAuthenicationHeader 
+      
+      $uriProcess = $UriOrga + "_apis/process/processes?api-version=5.1"
+      Invoke-RestMethod -Uri $uriProcess -Method get -Headers $AzureDevOpsAuthenicationHeader
+
 
 
 # stages:
