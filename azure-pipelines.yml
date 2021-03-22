@@ -7,7 +7,7 @@ pool:
 steps:
   - powershell: |
       $OrganizationName = "jukullam"
-
+      Start-Sleep -s 70
       $AzureDevOpsAuthenicationHeader = @{Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($PAT)")) }
 
       $UriOrga = "https://dev.azure.com/$($OrganizationName)/" 
