@@ -12,6 +12,7 @@ stages:
       - script: |
               echo "attempt is changing with number of attempts"
               echo "current attempt is $(system.stageattempt)"
+              echo "current checks is $(checks.stageattempt)"
               exit 1
         displayName: 'ischanging-$(system.stageattempt)'     
         continueOnError: true
@@ -32,6 +33,7 @@ stages:
             - script: |
                 echo "attempt is changing with number of attempts"
                 echo "current attempt is $(system.stageattempt)"
+                echo "current checks attempt is $(checks.stageattempt)"
                 exit 1
               displayName: "notchanging-$(system.stageattempt)"
               continueOnError: true
