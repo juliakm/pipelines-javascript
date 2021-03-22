@@ -13,10 +13,10 @@ jobs:
     - task: Delay@1
       inputs:
         delayForMinutes: '2'
-    - task: AzureMonitor@1
-      inputs:
-        connectedServiceNameARM: 'DevOps Pipelines - ARM Horizontal Work (82c135d4-f813-4bec-a93e-60e4323918ee)'
-        filterType: 'none'
+    # - task: AzureMonitor@1
+    #   inputs:
+    #     connectedServiceNameARM: 'DevOps Pipelines - ARM Horizontal Work (82c135d4-f813-4bec-a93e-60e4323918ee)'
+    #     filterType: 'none'
 
 # stages:
 #   - stage: 'first'
