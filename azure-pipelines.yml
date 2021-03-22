@@ -5,9 +5,9 @@ pool:
    vmImage: ubuntu-latest
 
 steps:
-- task: Delay@1
-  inputs:
-    delayForMinutes: '2'
+# - task: Delay@1
+#   inputs:
+#     delayForMinutes: '2'
 - task: ManualValidation@0
   inputs:
     notifyUsers: 'jukullam@microsoft.com'
