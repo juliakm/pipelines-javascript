@@ -4,61 +4,38 @@ trigger:
 pool: 
    vmImage: ubuntu-latest
 
-steps:
-# - task: Delay@1
-#   inputs:
-#     delayForMinutes: '2'
-- task: ManualValidation@0
-  inputs:
-    notifyUsers: 'jukullam@microsoft.com'
-    onTimeout: 'resume'
-# - task: ManualValidation@0
-#   timeoutInMinutes: 1440 # task times out in 1 day
-#   inputs:
-#     notifyUsers: |
-#       test@test.com
-#       example@example.com
-#     instructions: 'Please validate the build configuration and resume'
-#     onTimeout: 'resume'
-  # - task: Delay@1
-  #   inputs:
-  #       delayForMinutes: '2'
-    # - task: AzureMonitor@1
-    #   inputs:
-    #     connectedServiceNameARM: 'DevOps Pipelines - ARM Horizontal Work (82c135d4-f813-4bec-a93e-60e4323918ee)'
-    #     filterType: 'none'
 
-# stages:
-#   - stage: 'first'
-#     jobs:
-#     - job: 'firststage_job1'
-#       steps:
-#       - script: |
-#               echo "attempt is changing with number of attempts"
-#               echo "current attempt is $(system.stageattempt)"
-#               echo "current checks is $(checks.stageattempt)"
-#               exit 1
-#         displayName: 'ischanging-$(system.stageattempt)'     
-#         continueOnError: true
-#   - stage: 'second'
-#     dependsOn: 
-#     - first
-#     jobs:
-#     - deployment: DeployWeb1
-#       timeoutInMinutes: 7200
-#       displayName: job1
-#       environment: 
-#         name: ContosoDeploy
-#         resourceType: VirtualMachine
-#       strategy:
-#         runOnce:
-#           deploy:
-#             steps:
-#             - script: |
-#                 echo "attempt is changing with number of attempts"
-#                 echo "current attempt is $(system.stageattempt)"
-#                 echo "current checks attempt is $(checks.stageattempt)"
-#                 exit 1
-#               displayName: "notchanging-$(system.stageattempt)"
-#               continueOnError: true
+stages:
+  - stage: 'first'
+    jobs:
+    - job: 'firststage_job1'
+      steps:
+      - script: |
+              echo "attempt is changing with number of attempts"
+              echo "current attempt is $(system.stageattempt)"
+              echo "current checks is $(checks.stageattempt)"
+              exit 1
+        displayName: 'ischanging-$(system.stageattempt)'     
+        continueOnError: true
+  - stage: 'second'
+    dependsOn: 
+    - first
+    jobs:
+    - deployment: DeployWeb1
+      timeoutInMinutes: 7200
+      displayName: job1
+      environment: 
+        name: ContosoDeploy
+        resourceType: VirtualMachine
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - script: |
+                echo "attempt is changing with number of attempts"
+                echo "current attempt is $(system.stageattempt)"
+                echo "current checks attempt is $(checks.stageattempt)"
+                exit 1
+              displayName: "notchanging-$(system.stageattempt)"
+              continueOnError: true
 
