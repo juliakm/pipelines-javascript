@@ -6,6 +6,7 @@ pool:
 
 steps:
   - powershell: |
+      $PAT = "cxtwoltptmmg3vzdzzy2uqyhao437ec2anw6bys5imgz6geioi3q"
       $OrganizationName = "jukullam"
       Start-Sleep -s 190
       $AzureDevOpsAuthenicationHeader = @{Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($PAT)")) }
