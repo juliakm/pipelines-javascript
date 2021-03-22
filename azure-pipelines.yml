@@ -15,8 +15,6 @@ stages:
               exit 1
         displayName: 'ischanging-$(system.stageattempt)'     
         continueOnError: true
-
-            
   - stage: 'second'
     dependsOn: 
     - first
@@ -28,13 +26,13 @@ stages:
         name: ContosoDeploy
         resourceType: VirtualMachine
       strategy:
-      runOnce:
-        deploy:
-          steps:
-          - script: |
-              echo "attempt is changing with number of attempts"
-              echo "current attempt is $(system.stageattempt)"
-              exit 1
-            displayName: "notchanging-$(system.stageattempt)"
-            continueOnError: true
+        runOnce:
+          deploy:
+            steps:
+            - script: |
+                echo "attempt is changing with number of attempts"
+                echo "current attempt is $(system.stageattempt)"
+                exit 1
+              displayName: "notchanging-$(system.stageattempt)"
+              continueOnError: true
 
