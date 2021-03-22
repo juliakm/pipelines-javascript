@@ -4,42 +4,42 @@ trigger:
 pool: 
    vmImage: ubuntu-latest
 
+steps:
+  - powershell: |
+     $AzureDevOpsAuthenicationHeader = @{Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($PAT)")) }
 
-stages:
-  - stage: 'first'
-    jobs:
-    - job: 'firststage_job1'
-      steps:
-      - script: |
-              echo "attempt is changing with number of attempts"
-              echo "current attempt is $(system.stageattempt)"
-              echo "current checks is $(checks.stageattempt)"
-              exit 1
-        displayName: 'ischanging-$(system.stageattempt)'     
-        continueOnError: true
-      - task: ManualValidation@0
-        inputs:
-          notifyUsers: 'jukullam@microsoft.com'
-          onTimeout: 'resume'
-  - stage: 'second'
-    dependsOn: 
-    - first
-    jobs:
-    - deployment: DeployWeb1
-      timeoutInMinutes: 7200
-      displayName: job1
-      environment: 
-        name: ContosoDeploy
-        resourceType: VirtualMachine
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - script: |
-                echo "attempt is changing with number of attempts"
-                echo "current attempt is $(system.stageattempt)"
-                echo "current checks attempt is $(checks.stageattempt)"
-                exit 1
-              displayName: "notchanging-$(system.stageattempt)"
-              continueOnError: true
+
+# stages:
+#   - stage: 'first'
+#     jobs:
+#     - job: 'firststage_job1'
+#       steps:
+#       - script: |
+#               echo "attempt is changing with number of attempts"
+#               echo "current attempt is $(system.stageattempt)"
+#               echo "current checks is $(checks.stageattempt)"
+#               exit 1
+#         displayName: 'ischanging-$(system.stageattempt)'     
+#         continueOnError: true
+#   - stage: 'second'
+#     dependsOn: 
+#     - first
+#     jobs:
+#     - deployment: DeployWeb1
+#       timeoutInMinutes: 7200
+#       displayName: job1
+#       environment: 
+#         name: ContosoDeploy
+#         resourceType: VirtualMachine
+#       strategy:
+#         runOnce:
+#           deploy:
+#             steps:
+#             - script: |
+#                 echo "attempt is changing with number of attempts"
+#                 echo "current attempt is $(system.stageattempt)"
+#                 echo "current checks attempt is $(checks.stageattempt)"
+#                 exit 1
+#               displayName: "notchanging-$(system.stageattempt)"
+#               continueOnError: true
 
