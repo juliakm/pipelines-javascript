@@ -6,7 +6,14 @@ pool:
 
 steps:
   - powershell: |
-     $AzureDevOpsAuthenicationHeader = @{Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($PAT)")) }
+      $OrganizationName = "jukullam"
+
+      $AzureDevOpsAuthenicationHeader = @{Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($PAT)")) }
+
+      $UriOrga = "https://dev.azure.com/$($OrganizationName)/" 
+      $uriAccount = $UriOrga + "_apis/projects?api-version=5.1"
+
+      Invoke-RestMethod -Uri $uriAccount -Method get -Headers $AzureDevOpsAuthenicationHeader 
 
 
 # stages:
