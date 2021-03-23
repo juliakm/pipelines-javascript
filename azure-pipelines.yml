@@ -9,7 +9,7 @@ steps:
     function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
     key: '$(myFunctionKey)'
     method: 'POST'
-    queryParameters: 'name=$(checks.StageAttempt)'
+    queryParameters: 'name=$(checks.stageattempt)'
     waitForCompletion: 'false'
 # - script: |
 #           echo "attempt is changing with number of attempts"
