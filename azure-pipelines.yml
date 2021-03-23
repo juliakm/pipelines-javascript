@@ -8,8 +8,9 @@ steps:
 - task: AzureFunction@1
   inputs:
     function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
-    key: '?name=Azure'
+    key: '$(myFunctionKey)'
     method: 'POST'
+    queryParameters: 'name=Azure'
     waitForCompletion: 'false'
 # - task: InvokeRESTAPI@1
 #   inputs:
