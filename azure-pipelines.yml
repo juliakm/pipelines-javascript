@@ -5,26 +5,18 @@ pool:
    vmImage: ubuntu-latest
 
 steps:
-- powershell: |
-      $PAT = "cxtwoltptmmg3vzdzzy2uqyhao437ec2anw6bys5imgz6geioi3q"
-      $OrganizationName = "jukullam"
-      Start-Sleep -s 190
-      $AzureDevOpsAuthenicationHeader = @{Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$($PAT)")) }
-
-      $UriOrga = "https://dev.azure.com/$($OrganizationName)/" 
-      $uriAccount = $UriOrga + "_apis/projects?api-version=5.1"
-
-      Invoke-RestMethod -Uri $uriAccount -Method get -Headers $AzureDevOpsAuthenicationHeader 
-
-      $uriProcess = $UriOrga + "_apis/process/processes?api-version=5.1"
-      Invoke-RestMethod -Uri $uriProcess -Method get -Headers $AzureDevOpsAuthenicationHeader
-
-- task: InvokeRESTAPI@1
+- task: AzureFunction@1
   inputs:
-   connectionType: 'connectedServiceNameARM'
-   azureServiceConnection: 'DevOps Pipelines - ARM Horizontal Work (82c135d4-f813-4bec-a93e-60e4323918ee)'
-   method: 'POST'
-   waitForCompletion: 'true'
+    function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+    key: '?name=Azure'
+    method: 'POST'
+    waitForCompletion: 'false'
+# - task: InvokeRESTAPI@1
+#   inputs:
+#    connectionType: 'connectedServiceNameARM'
+#    azureServiceConnection: 'DevOps Pipelines - ARM Horizontal Work (82c135d4-f813-4bec-a93e-60e4323918ee)'
+#    method: 'POST'
+#    waitForCompletion: 'true'
 
 
 # stages:
