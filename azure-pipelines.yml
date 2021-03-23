@@ -3,14 +3,29 @@ trigger:
 
 pool: server
 
-steps:
-- task: AzureFunction@1
-  inputs:
-    function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
-    key: '$(myFunctionKey)'
-    method: 'POST'
-    queryParameters: 'name=$(checks.stageattempt)'
-    waitForCompletion: 'false'
+stages:
+  - stage: 'first'
+    jobs:
+    - job: 'firststage_job1'
+      steps:
+      - task: AzureFunction@1
+        inputs:
+          function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+          key: '$(myFunctionKey)'
+          method: 'POST'
+          queryParameters: 'name=$(checks.stageattempt)'
+          waitForCompletion: 'false'
+  - stage: 'second'
+    jobs:
+    - job: 'secondstage_job1'
+      steps:
+      - task: AzureFunction@1
+        inputs:
+          function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+          key: '$(myFunctionKey)'
+          method: 'POST'
+          queryParameters: 'name=$(checks.stageattempt)'
+          waitForCompletion: 'false'
 # - script: |
 #           echo "attempt is changing with number of attempts"
 #           echo "current attempt is $(system.stageattempt)"
