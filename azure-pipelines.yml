@@ -9,20 +9,7 @@ steps:
     function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
     key: '$(myFunctionKey)'
     method: 'POST'
-    headers: |
-      {
-      "Content-Type":"application/json", 
-      "PlanUrl": "$(system.CollectionUri)", 
-      "ProjectId": "$(system.TeamProjectId)", 
-      "HubName": "$(system.HostType)", 
-      "PlanId": "$(system.PlanId)", 
-      "JobId": "$(system.JobId)", 
-      "TimelineId": "$(system.TimelineId)", 
-      "TaskInstanceId": "$(system.TaskInstanceId)", 
-      "AuthToken": "$(system.AccessToken)"
-      "Attempts": "$(checks.StageAttempt)"
-      }
-    queryParameters: 'name=Azure'
+    queryParameters: 'name=$(checks.StageAttempt)'
     waitForCompletion: 'true'
 # - script: |
 #           echo "attempt is changing with number of attempts"
