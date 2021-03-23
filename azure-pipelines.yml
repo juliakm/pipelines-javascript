@@ -9,11 +9,12 @@ stages:
     - job: 'firststage_job1'
       steps:
       - task: AzureFunction@1
+        displayName: FunctionTry $(checks.stageattempt)
         inputs:
           function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
           key: '$(myFunctionKey)'
           method: 'POST'
-          queryParameters: 'name=$(stage.stageattempt)'
+          queryParameters: 'name=Azure'
           waitForCompletion: 'false'
   - stage: 'second'
     dependsOn:
