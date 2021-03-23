@@ -11,11 +11,11 @@ steps:
     method: 'POST'
     queryParameters: 'name=Azure'
     waitForCompletion: 'true'
-- script: |
-          echo "attempt is changing with number of attempts"
-          echo "current attempt is $(system.stageattempt)"
-          echo "current checks is $(checks.stageattempt)"
-          exit 1
+# - script: |
+#           echo "attempt is changing with number of attempts"
+#           echo "current attempt is $(system.stageattempt)"
+#           echo "current checks is $(checks.stageattempt)"
+#           exit 1
 # - task: InvokeRESTAPI@1
 #   inputs:
 #    connectionType: 'connectedServiceNameARM'
