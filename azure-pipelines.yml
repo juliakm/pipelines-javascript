@@ -13,7 +13,7 @@ stages:
           function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
           key: '$(myFunctionKey)'
           method: 'POST'
-          queryParameters: 'name=$(checks.stageattempt)'
+          queryParameters: 'name=$(stage.stageattempt)'
           waitForCompletion: 'false'
   - stage: 'second'
     dependsOn:
