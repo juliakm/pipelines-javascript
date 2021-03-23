@@ -10,7 +10,7 @@ steps:
     key: '$(myFunctionKey)'
     method: 'POST'
     queryParameters: 'name=$(checks.StageAttempt)'
-    waitForCompletion: 'true'
+    waitForCompletion: 'false'
 # - script: |
 #           echo "attempt is changing with number of attempts"
 #           echo "current attempt is $(system.stageattempt)"
