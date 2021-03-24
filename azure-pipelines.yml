@@ -35,7 +35,7 @@ jobs:
                 function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
                 key: '$(myFunctionKey)'
                 method: 'POST'
-                queryParameters: 'name=$(myVar)$(System.StageAttempt)'
+                queryParameters: 'name=$(myVar)$(Checks.StageAttempt)'
                 waitForCompletion: 'false'
               continueOnError: true
 
