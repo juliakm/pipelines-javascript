@@ -3,43 +3,41 @@ trigger:
 
 pool: server
 
-stages:
-  - stage: 'first'
-    jobs:
-    - job: 'firststage_job1'
-      steps:
-      - task: AzureFunction@1
-        displayName: FunctionTry $(system.stageattempt)
-        inputs:
-          function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
-          key: '$(myFunctionKey)'
-          method: 'POST'
-          queryParameters: 'name=$(myVar)$(system.stageattempt)$(checks.stageattempt)'
-          waitForCompletion: 'false'
-  - stage: 'second'
-    dependsOn:
-      - first
-    condition: eq(variables['System.JobAttempt'], '1')
-    jobs:
-      - deployment: FunctionTwo
-        timeoutInMinutes: 7200
-        displayName: job1
-        environment:
-          name: ContosoDeploy
-          resourceType: VirtualMachine
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-                - task: AzureFunction@1
-                  displayName: FunctionTry $(checks.stageattempt)
-                  inputs:
-                    function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
-                    key: '$(myFunctionKey)'
-                    method: 'POST'
-                    queryParameters: 'name=$(checks.stageattempt)'
-                    waitForCompletion: 'false'
-                  continueOnError: true
+jobs:
+- job: 'firststage_job1'
+  steps:
+  - task: AzureFunction@1
+    displayName: FunctionTry $(System.StageAttempt)
+    inputs:
+      function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+      key: '$(myFunctionKey)'
+      method: 'POST'
+      queryParameters: 'name=$(myVar)$(System.StageAttempt)'
+      waitForCompletion: 'false'
+  # - stage: 'second'
+  #   dependsOn:
+  #     - first
+  #   condition: eq(variables['Checks.JobAttempt'], '1')
+  #   jobs:
+  #     - deployment: FunctionTwo
+  #       timeoutInMinutes: 7200
+  #       displayName: job1
+  #       environment:
+  #         name: ContosoDeploy
+  #         resourceType: VirtualMachine
+  #       strategy:
+  #         runOnce:
+  #           deploy:
+  #             steps:
+  #               - task: AzureFunction@1
+  #                 displayName: FunctionTry $(checks.stageattempt)
+  #                 inputs:
+  #                   function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+  #                   key: '$(myFunctionKey)'
+  #                   method: 'POST'
+  #                   queryParameters: 'name=$(checks.stageattempt)'
+  #                   waitForCompletion: 'false'
+  #                 continueOnError: true
 
     # jobs:
     # - job: 'secondstage_job1'
