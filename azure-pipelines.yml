@@ -9,16 +9,17 @@ stages:
     - job: 'firststage_job1'
       steps:
       - task: AzureFunction@1
-        displayName: FunctionTry $(stage.stageattempt)
+        displayName: FunctionTry $(system.stageattempt)
         inputs:
           function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
           key: '$(myFunctionKey)'
           method: 'POST'
-          queryParameters: 'name=$(myVar)$(stage.stageattempt)$(checks.stageattempt)'
+          queryParameters: 'name=$(myVar)$(system.stageattempt)$(checks.stageattempt)'
           waitForCompletion: 'false'
   - stage: 'second'
     dependsOn:
       - first
+    condition: eq(variables['System.JobAttempt'], '1')
     jobs:
       - deployment: FunctionTwo
         timeoutInMinutes: 7200
