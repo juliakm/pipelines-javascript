@@ -14,7 +14,7 @@ stages:
           function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
           key: '$(myFunctionKey)'
           method: 'POST'
-          queryParameters: 'name=Azure'
+          queryParameters: 'name=Azure$(stage.stageattempt)$(checks.stageattempt)'
           waitForCompletion: 'false'
   - stage: 'second'
     dependsOn:
