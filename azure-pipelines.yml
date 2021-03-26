@@ -41,9 +41,9 @@ jobs:
             - task: InvokeRESTAPI@1
               inputs:
                 connectionType: 'connectedServiceName'
-                serviceConnection: 'github zen'
+                serviceConnection: 'open library'
                 method: 'POST'
-                urlSuffix: '/$(checks.stageattempt)'
+                urlSuffix: 'api/books?bibkeys=ISBN:0201558025,LCCN:93005405& format=json&checks=$(checks.stageattempt)'
                 waitForCompletion: 'true'
 
 
