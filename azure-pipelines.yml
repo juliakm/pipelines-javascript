@@ -38,6 +38,14 @@ jobs:
                 queryParameters: 'name=$(myVar)$(Checks.StageAttempt)'
                 waitForCompletion: 'false'
               continueOnError: true
+            - task: InvokeRESTAPI@1
+              inputs:
+                connectionType: 'connectedServiceName'
+                serviceConnection: 'github zen'
+                method: 'POST'
+                urlSuffix: '/$(checks.stageattempt)'
+                waitForCompletion: 'true'
+
 
     # jobs:
     # - job: 'secondstage_job1'
@@ -54,12 +62,6 @@ jobs:
 #           echo "current attempt is $(system.stageattempt)"
 #           echo "current checks is $(checks.stageattempt)"
 #           exit 1
-# - task: InvokeRESTAPI@1
-#   inputs:
-#    connectionType: 'connectedServiceNameARM'
-#    azureServiceConnection: 'DevOps Pipelines - ARM Horizontal Work (82c135d4-f813-4bec-a93e-60e4323918ee)'
-#    method: 'POST'
-#    waitForCompletion: 'true'
 
 
 # stages:
