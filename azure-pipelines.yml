@@ -38,13 +38,13 @@ jobs:
                 queryParameters: 'name=$(myVar)$(Checks.StageAttempt)'
                 waitForCompletion: 'false'
               continueOnError: true
-            - task: InvokeRESTAPI@1
-              inputs:
-                connectionType: 'connectedServiceName'
-                serviceConnection: 'open library'
-                method: 'POST'
-                urlSuffix: 'api/books?bibkeys=ISBN:0201558025,LCCN:93005405&format=json'
-                waitForCompletion: 'true'
+            # - task: InvokeRESTAPI@1
+            #   inputs:
+            #     connectionType: 'connectedServiceName'
+            #     serviceConnection: 'open library'
+            #     method: 'POST'
+            #     urlSuffix: 'api/books?bibkeys=ISBN:0201558025,LCCN:93005405&format=json'
+            #     waitForCompletion: 'true'
 
 
     # jobs:
