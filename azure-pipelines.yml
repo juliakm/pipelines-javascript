@@ -1,67 +1,16 @@
 trigger: 
 - master
 
-pool: server
+steps:
+  - bash: |
+      echo "##vso[task.setvariable variable=sauce;]crushed tomatoes"
+      echo "##vso[task.setvariable variable=secretSauce;]crushed tomatoes with garlic"
+    name: SetVars
+  - bash: 
+      echo "Sauce is $SAUCE"
+      echo "secretSauce is $SECRETSAUCE"
+    name: OutputVars
 
-# jobs:
-# - job: 'firststage_job1'
-#   steps:
-  # - task: AzureFunction@1
-  #   displayName: FunctionTry $(System.StageAttempt)
-  #   inputs:
-  #     function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
-  #     key: '$(myFunctionKey)'
-  #     method: 'POST'
-  #     queryParameters: 'name=$(myVar)$(System.StageAttempt)'
-  #     waitForCompletion: 'false'
-  # - stage: 'second'
-  #   dependsOn:
-  #     - first
-  #   condition: eq(variables['Checks.JobAttempt'], '1')
-jobs:
-  - deployment: FunctionTwo
-    timeoutInMinutes: 7200
-    displayName: job1
-    environment:
-      name: ContosoDeploy
-      resourceType: VirtualMachine
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - task: AzureFunction@1
-              displayName: FunctionTry $(Checks.StageAttempt)
-              inputs:
-                function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
-                key: '$(myFunctionKey)'
-                method: 'POST'
-                queryParameters: 'name=$(myVar)$(Checks.StageAttempt)'
-                waitForCompletion: 'false'
-              continueOnError: true
-            # - task: InvokeRESTAPI@1
-            #   inputs:
-            #     connectionType: 'connectedServiceName'
-            #     serviceConnection: 'open library'
-            #     method: 'POST'
-            #     urlSuffix: 'api/books?bibkeys=ISBN:0201558025,LCCN:93005405&format=json'
-            #     waitForCompletion: 'true'
-
-
-    # jobs:
-    # - job: 'secondstage_job1'
-    #   steps:
-    #   - task: AzureFunction@1
-    #     inputs:
-    #       function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
-    #       key: '$(myFunctionKey)'
-    #       method: 'POST'
-    #       queryParameters: 'name=$(checks.stageattempt)'
-    #       waitForCompletion: 'false'
-# - script: |
-#           echo "attempt is changing with number of attempts"
-#           echo "current attempt is $(system.stageattempt)"
-#           echo "current checks is $(checks.stageattempt)"
-#           exit 1
 
 
 # stages:
@@ -74,6 +23,9 @@ jobs:
 #               echo "current attempt is $(system.stageattempt)"
 #               echo "current checks is $(checks.stageattempt)"
 #               exit 1
+#         target:
+#           settableVariables:
+#           - foo
 #         displayName: 'ischanging-$(system.stageattempt)'     
 #         continueOnError: true
 #   - stage: 'second'
@@ -97,4 +49,66 @@ jobs:
 #                 exit 1
 #               displayName: "notchanging-$(system.stageattempt)"
 #               continueOnError: true
+
+
+# # jobs:
+# # - job: 'firststage_job1'
+# #   steps:
+#   # - task: AzureFunction@1
+#   #   displayName: FunctionTry $(System.StageAttempt)
+#   #   inputs:
+#   #     function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+#   #     key: '$(myFunctionKey)'
+#   #     method: 'POST'
+#   #     queryParameters: 'name=$(myVar)$(System.StageAttempt)'
+#   #     waitForCompletion: 'false'
+#   # - stage: 'second'
+#   #   dependsOn:
+#   #     - first
+#   #   condition: eq(variables['Checks.JobAttempt'], '1')
+# jobs:
+#   - deployment: FunctionTwo
+#     timeoutInMinutes: 7200
+#     displayName: job1
+#     environment:
+#       name: ContosoDeploy
+#       resourceType: VirtualMachine
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#             - task: AzureFunction@1
+#               displayName: FunctionTry $(Checks.StageAttempt)
+#               inputs:
+#                 function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+#                 key: '$(myFunctionKey)'
+#                 method: 'POST'
+#                 queryParameters: 'name=$(myVar)$(Checks.StageAttempt)'
+#                 waitForCompletion: 'false'
+#               continueOnError: true
+#             # - task: InvokeRESTAPI@1
+#             #   inputs:
+#             #     connectionType: 'connectedServiceName'
+#             #     serviceConnection: 'open library'
+#             #     method: 'POST'
+#             #     urlSuffix: 'api/books?bibkeys=ISBN:0201558025,LCCN:93005405&format=json'
+#             #     waitForCompletion: 'true'
+
+
+#     # jobs:
+#     # - job: 'secondstage_job1'
+#     #   steps:
+#     #   - task: AzureFunction@1
+#     #     inputs:
+#     #       function: 'https://myfunctionappgh.azurewebsites.net/api/httptriggercsharp1'
+#     #       key: '$(myFunctionKey)'
+#     #       method: 'POST'
+#     #       queryParameters: 'name=$(checks.stageattempt)'
+#     #       waitForCompletion: 'false'
+# # - script: |
+# #           echo "attempt is changing with number of attempts"
+# #           echo "current attempt is $(system.stageattempt)"
+# #           echo "current checks is $(checks.stageattempt)"
+# #           exit 1
+
 
