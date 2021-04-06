@@ -3,21 +3,23 @@ variables:
   myOuter: $(myInner)
   myPredefinedVar: $(Build.SourcesDirectory)
   myPredefinedVarTwo: $(myPredefinedVar)
+  TAG: $(Build.RequestedForId)
 
 steps:
 - script: echo $(myOuter)  # prints "someValue"
-  displayName: Variable is $(myOuter)  # display name is "Variable is someValue"
+  displayName: Variable is $(myOuter)  # prints "Variable is someValue"
   
 - script: echo $(myOuter)  # prints "someValue"
   displayName: Variable is ${{ variables.myOuter }}  # display name is "Variable is someValue"
 
-- script: echo $(myPredefinedVarTwo)  
-  displayName: Variable is ${{ variables.myPredefinedVarTwo }}  
+- script: echo $(myPredefinedVarTwo)  # prints /home/vsts/work/1/s
+  displayName: Variable is ${{ variables.myPredefinedVarTwo }}  # prints "Variable is /home/vsts/work/1/s"
 
-- script: echo $(myPredefinedVar)  
-  displayName: Variable is ${{ variables.myPredefinedVar }}  
+- script: echo $(myPredefinedVar)  # prints /home/vsts/work/1/s
+  displayName: Variable is ${{ variables.myPredefinedVar }}  # prints "Variable is /home/vsts/work/1/s"
 
-
+- script: echo $(TAG) 
+  displayName: 'docker build test:$(TAG)'
 
 
 
