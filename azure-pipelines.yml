@@ -1,27 +1,21 @@
 variables:
   myInner: someValue
   myOuter: $(myInner)
+  myPredefinedVar: $(Build.SourcesDirectory)
+  myPredefinedVarTwo: $(myPredefinedVar)
 
-stages:
-- stage: A
-  displayName: A Variable is $(myOuter)  # display name is "Variable is someValue"
-  jobs:
-  - job: A1
-    displayName: A1 Variable is $(myOuter)  # display name is "Variable is someValue"
-  - job: A2
-    displayName: A2 Variable is $(myOuter)  # display name is "Variable is someValue"
+steps:
+- script: echo $(myOuter)  # prints "someValue"
+  displayName: Variable is $(myOuter)  # display name is "Variable is someValue"
+  
+- script: echo $(myOuter)  # prints "someValue"
+  displayName: Variable is ${{ variables.myOuter }}  # display name is "Variable is someValue"
 
-- stage: B
-  jobs:
-  - job: B1
-    displayName: B1 variable is $(myOuter)  # display name is "Variable is someValue"
-  - job: B2
-    displayName: B1 variable is $(myOuter)  # display name is "Variable is someValue"
-    steps:
-    - script: echo $(myOuter)  # prints "someValue"
-      displayName: Variable is $(myOuter)  # display name is "Variable is someValue"
-    - script: echo $(myOuter)  # prints "someValue"
-      displayName: Variable is ${{ variables.myOuter }}  # display name is "Variable is someValue"
+- script: echo $(myPredefinedVarTwo)  
+  displayName: Variable is ${{ variables.myPredefinedVarTwo }}  
+
+- script: echo $(myPredefinedVar)  
+  displayName: Variable is ${{ variables.myPredefinedVar }}  
 
 
 
