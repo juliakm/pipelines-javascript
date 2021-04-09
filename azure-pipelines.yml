@@ -14,6 +14,10 @@ steps:
 # before handing the body of the script to the shell.
 - bash: |
     echo my pipeline variable is $(sauce)
+- powershell: |
+    Write-Host "my environment variable is $env:SAUCE"
+    Write-Host "my environment variable is $env:SECRETSAUCE"
+
 
 
 
