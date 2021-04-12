@@ -1,24 +1,11 @@
-steps:
-# Create a variable
-- bash: |
-    echo "##vso[task.setvariable variable=secretSauce;issecret=true]crushed tomatoes with garlic"
-    echo "##vso[task.setvariable variable=outputSauce;isoutput=true]canned goods"
-  name: SetVars
+variables:
+  - name: projectName
+    value: contoso
 
-- bash: |
-    echo "##vso[task.setvariable variable=sauce]crushed tomatoes"
-    echo my secret pipeline variable is $(secretSauce)
-
-# Use the variable
-# "$(sauce)" is replaced by the contents of the `sauce` variable by Azure Pipelines
-# before handing the body of the script to the shell.
-- bash: |
-    echo my pipeline variable is $(sauce)
-- powershell: |
-    Write-Host "my environment variable is $env:SAUCE"
-    Write-Host "my environment variable is $env:SECRETSAUCE"
-
-
+steps: 
+- bash: echo $(projectName)
+- powershell: echo $(projectName)
+- script: echo $(projectName)
 
 
 
