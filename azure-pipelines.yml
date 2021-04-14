@@ -15,7 +15,12 @@ stages:
       value: 'job yaml'
     steps:
     - bash: echo $(a)  #job-yaml
-
+  - job: C
+    steps:
+    - task: PowerShell@2
+      inputs:
+        filePath: 'versioning.ps'
+        errorActionPreference: 'continue'
 
 # trigger: 
 # - master
