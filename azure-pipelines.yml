@@ -21,7 +21,7 @@ stages:
       inputs:
         filePath: 'simple-script.sh'
       env: 
-        VAR_A: $(a) #outputs job-yaml
+        VAR_A: $(a) #outputs stage-yaml
         VAR_FROM_ONE: $[ stageDependencies.one.outputs['a'] ]
  
     
