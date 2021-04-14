@@ -1,1 +1,1 @@
-echo $(a)
+echo $(VAR_A)
