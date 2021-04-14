@@ -17,11 +17,9 @@ stages:
     - bash: echo $(a)  #job-yaml
   - job: C
     steps:
-    - task: PowerShell@2
+    - task: Bash@3
       inputs:
-        filePath: 'versioning.ps'
-        errorActionPreference: 'continue'
-
+        filePath: 'simple-script.sh'
 # trigger: 
 # - master
 
