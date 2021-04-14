@@ -20,6 +20,9 @@ stages:
     - task: Bash@3
       inputs:
         filePath: 'simple-script.sh'
+      env: 
+        VAR_A: $(a) 
+    
 # trigger: 
 # - master
 
