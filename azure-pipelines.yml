@@ -14,7 +14,13 @@ stages:
     - name: a
       value: 'job yaml'
     steps:
-    - bash: echo $(a)  #job-yaml
+    - bash: echo $(a)  #job yaml
+    - task: Bash@3
+      inputs:
+        filePath: 'simple-script.sh'
+      env: 
+        VAR_A: $(a) #outputs job yaml??
+
   - job: C
     steps:
     - task: Bash@3
@@ -22,7 +28,6 @@ stages:
         filePath: 'simple-script.sh'
       env: 
         VAR_A: $(a) #outputs stage-yaml
-        VAR_FROM_ONE: $[ stageDependencies.one.outputs['a'] ]
  
     
 # trigger: 
